@@ -3,7 +3,8 @@ import {
   ArrowRight, 
   FileText, 
   Sparkles, 
-  Terminal
+  Terminal,
+  BrainCircuit
 } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 
@@ -67,14 +68,12 @@ export const Hero = ({ onOpenResumeModal, onOpenTerminal }) => {
               AI & ML
             </h1>
             
-            {/* Center Avatar Badge */}
+            {/* Center Tech/AI Logo Badge */}
             <div className="relative group my-2 sm:my-0">
               <div className="absolute -inset-1 bg-sky-400 rounded-full blur-sm opacity-80 group-hover:scale-110 transition-transform"></div>
-              <img 
-                src="/ritesh-passport.jpg" 
-                alt="Kalapaneni Ritesh Chowdary Avatar" 
-                className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full object-cover border-4 border-white shadow-2xl group-hover:rotate-3 transition-transform"
-              />
+              <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-tr from-cyan-500 to-sky-400 border-4 border-white shadow-2xl flex items-center justify-center text-white group-hover:rotate-3 transition-transform">
+                <BrainCircuit className="w-10 h-10 sm:w-14 sm:h-14 text-white animate-pulse" />
+              </div>
             </div>
 
             <h1 className="font-bebas text-6xl sm:text-8xl md:text-9xl tracking-tight text-black leading-none">

@@ -13,7 +13,6 @@ import { FaqSection } from './components/FaqSection';
 import { Resume } from './components/Resume';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { AskRiteshAI } from './components/AskRiteshAI';
 import { ResumeModal } from './components/ResumeModal';
 import { TerminalEasterEgg } from './components/TerminalEasterEgg';
 
@@ -83,9 +82,6 @@ export function App() {
 
       {/* Framer Footer with Infinite Ticker */}
       <Footer onOpenTerminal={() => setIsTerminalOpen(true)} />
-
-      {/* Floating AI Portfolio Assistant Widget */}
-      <AskRiteshAI />
 
       {/* Interactive Modals */}
       <ResumeModal

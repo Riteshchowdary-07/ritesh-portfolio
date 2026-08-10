@@ -86,18 +86,16 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal, onOpenResumeModal })
           </div>
         </div>
 
-        {/* Center Logo Avatar Badge */}
+        {/* Center Logo Initial Badge */}
         <button 
           onClick={() => scrollToSection('home')}
           className="flex flex-col items-center group"
         >
           <div className="relative">
             <div className="absolute -inset-1 bg-cyan-400 rounded-full blur-xs opacity-70 group-hover:opacity-100 transition-opacity"></div>
-            <img 
-              src="/ritesh-passport.jpg" 
-              alt="Ritesh Chowdary Avatar" 
-              className="relative w-10 h-10 rounded-full object-cover border-2 border-white shadow-md group-hover:scale-105 transition-transform"
-            />
+            <div className="relative w-10 h-10 rounded-full bg-cyan-500 text-white font-mono font-black text-xs flex items-center justify-center border-2 border-white shadow-md group-hover:scale-105 transition-transform">
+              RC
+            </div>
           </div>
           <span className="text-[10px] font-black text-black tracking-wider font-mono mt-0.5">
             Home

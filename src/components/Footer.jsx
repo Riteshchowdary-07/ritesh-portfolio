@@ -46,13 +46,11 @@ export const Footer = ({ onOpenTerminal }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             
-            {/* Avatar & Brand Info */}
+            {/* Initial Badge & Brand Info */}
             <div className="md:col-span-4 flex items-center gap-4">
-              <img 
-                src="/ritesh-passport.jpg" 
-                alt="Kalapaneni Ritesh Chowdary Avatar" 
-                className="w-20 h-20 rounded-2xl object-cover border-2 border-slate-300 shadow-md shrink-0"
-              />
+              <div className="w-16 h-16 rounded-2xl bg-cyan-500 text-white font-mono font-black text-xl flex items-center justify-center border-2 border-slate-300 shadow-md shrink-0">
+                RC
+              </div>
               <div className="space-y-1">
                 <h4 className="text-xl font-black text-black leading-tight">
                   Kalapaneni Ritesh Chowdary
