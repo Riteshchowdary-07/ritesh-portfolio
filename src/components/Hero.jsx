@@ -3,8 +3,7 @@ import {
   ArrowRight, 
   FileText, 
   Sparkles, 
-  Terminal,
-  BrainCircuit
+  Terminal
 } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 
@@ -60,24 +59,12 @@ export const Hero = ({ onOpenResumeModal, onOpenTerminal }) => {
           <span className="text-black font-black">{personalData.status}</span>
         </div>
 
-        {/* Framer Headline: 100% Solid Pure Black Text */}
+        {/* Framer Headline: AI & ML DEVELOPER (Clean, No Logo) */}
         <div className="space-y-6">
           
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
-            <h1 className="font-bebas text-6xl sm:text-8xl md:text-9xl tracking-tight text-black leading-none">
-              AI & ML
-            </h1>
-            
-            {/* Center Tech/AI Logo Badge */}
-            <div className="relative group my-2 sm:my-0">
-              <div className="absolute -inset-1 bg-sky-400 rounded-full blur-sm opacity-80 group-hover:scale-110 transition-transform"></div>
-              <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-tr from-cyan-500 to-sky-400 border-4 border-white shadow-2xl flex items-center justify-center text-white group-hover:rotate-3 transition-transform">
-                <BrainCircuit className="w-10 h-10 sm:w-14 sm:h-14 text-white animate-pulse" />
-              </div>
-            </div>
-
-            <h1 className="font-bebas text-6xl sm:text-8xl md:text-9xl tracking-tight text-black leading-none">
-              DEVELOPER
+          <div className="flex items-center justify-center">
+            <h1 className="font-bebas text-6xl sm:text-8xl md:text-9xl tracking-tight text-black leading-none text-center">
+              AI & ML DEVELOPER
             </h1>
           </div>
 
