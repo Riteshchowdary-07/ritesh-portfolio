@@ -1,182 +1,121 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  ArrowRight, 
-  FileText, 
-  Sparkles, 
-  Terminal,
-  ExternalLink
-} from 'lucide-react';
-import { personalData } from '../data/portfolioData';
+import React from 'react';
 
-export const Hero = ({ isDark = true, onOpenTerminal }) => {
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const roles = personalData.roles;
-
-  useEffect(() => {
-    const currentRole = roles[currentRoleIndex];
-    const typingSpeed = isDeleting ? 40 : 80;
-
-    const timer = setTimeout(() => {
-      if (!isDeleting) {
-        setDisplayText(currentRole.substring(0, displayText.length + 1));
-        if (displayText === currentRole) {
-          setTimeout(() => setIsDeleting(true), 2000);
-        }
-      } else {
-        setDisplayText(currentRole.substring(0, displayText.length - 1));
-        if (displayText === '') {
-          setIsDeleting(false);
-          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
-        }
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timer);
-  }, [displayText, isDeleting, currentRoleIndex, roles]);
-
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const yOffset = -70;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+export default function Hero() {
+  const scrollTo = (id) => (e) => {
+    e.preventDefault();
+    const elem = document.getElementById(id);
+    if (elem) {
+      elem.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section id="home" className={`relative min-h-screen pt-32 pb-20 flex flex-col justify-center items-center transition-colors duration-300 ${
-      isDark ? 'bg-[#0b1017]' : 'bg-white'
-    }`}>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 space-y-10 text-center">
-        
-        {/* Status Pill Badge */}
-        <div className={`inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border text-xs font-mono font-black shadow-sm ${
-          isDark 
-            ? 'bg-[#131b27] border-white/10 text-slate-200' 
-            : 'bg-slate-100 border-slate-300 text-slate-900'
-        }`}>
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-          </span>
-          <span>{personalData.status}</span>
-        </div>
+    <section id="home" className="hero">
+      <div className="hero__atmosphere" />
+      <div className="hero__grid" />
+      <div className="hero__orb hero__orb--one" />
+      <div className="hero__orb hero__orb--two" />
 
-        {/* Framer Headline */}
-        <div className="space-y-6">
-          
-          <div className="flex items-center justify-center">
-            <h1 className={`font-bebas text-6xl sm:text-8xl md:text-9xl tracking-tight leading-none text-center ${
-              isDark ? 'text-white' : 'text-slate-950'
-            }`}>
-              AI & ML DEVELOPER
-            </h1>
+      <div className="container hero__inner">
+        <div className="hero__copy">
+          <div className="eyebrow hero__greeting">
+            <span>KALAPANENI RITESH CHOWDARY</span>
+            <span className="hero__greeting-sep">•</span>
+            <span className="hero__role">CHENNAI, INDIA</span>
           </div>
 
-          {/* Typewriter Role */}
-          <div className="h-10 flex items-center justify-center">
-            <span className={`text-xl sm:text-2xl font-mono font-black flex items-center gap-2 ${
-              isDark ? 'text-slate-200' : 'text-slate-900'
-            }`}>
-              <span className="text-cyan-500 font-black">&gt;</span> {displayText}
-              <span className="w-2 h-6 bg-cyan-500 inline-block animate-pulse"></span>
-            </span>
-          </div>
+          <h1 className="hero__brand">
+            <span className="hero__brand-line">RITESH</span>
+            <span className="hero__brand-line hero__brand-line--accent">CHOWDARY</span>
+          </h1>
 
-          {/* Subtitle paragraph */}
-          <p className={`text-base sm:text-lg max-w-2xl mx-auto font-extrabold leading-relaxed ${
-            isDark ? 'text-slate-300' : 'text-slate-800'
-          }`}>
-            From R.M.D Engineering College, I build intelligent AI models, OpenCV computer vision systems, and practical web applications.
+          <p className="hero__headline">
+            AI & ML Engineering Student | Computer Vision & GenAI Developer
           </p>
-        </div>
 
-        {/* Floating Action Pill Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-          <button
-            onClick={() => scrollToSection('contact')}
-            className="px-9 py-4 rounded-full font-black text-sm text-black bg-cyan-400 hover:bg-cyan-300 shadow-xl flex items-center gap-3 transition-all hover:scale-105 active:scale-95 group border border-cyan-300"
-          >
-            <span>i Want to Chat</span>
-            <span className="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
-          </button>
+          <p className="hero__support">
+            Building practical AI systems across Computer Vision, Generative AI, and intelligent software applications.
+          </p>
 
-          <button
-            onClick={() => scrollToSection('projects')}
-            className={`px-8 py-4 rounded-full font-black text-sm border flex items-center gap-2 transition-all hover:scale-105 active:scale-95 shadow-md ${
-              isDark 
-                ? 'bg-[#131b27] border-white/10 text-white hover:bg-slate-800' 
-                : 'bg-slate-100 border-slate-300 text-slate-900 hover:bg-slate-200'
-            }`}
-          >
-            <span>View All Projects</span>
-            <ArrowRight className="w-4 h-4 text-cyan-500" />
-          </button>
-
-          {/* Direct Resume Link (PDF in new tab) */}
-          <a
-            href="/Ritesh_Chowdary_Resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="px-6 py-4 rounded-full font-black text-sm text-white bg-cyan-500 hover:bg-cyan-600 flex items-center gap-2 transition-all hover:scale-105 active:scale-95 shadow-md"
-          >
-            <FileText className="w-4 h-4 text-white" />
-            <span className="text-white-brand">View Original Resume (PDF)</span>
-            <ExternalLink className="w-3.5 h-3.5 text-white" />
-          </a>
-        </div>
-
-        {/* Code Visual Card Container */}
-        <div className="pt-10 max-w-3xl mx-auto">
-          <div className={`framer-grid-container rounded-3xl p-6 shadow-2xl border relative text-left ${
-            isDark 
-              ? 'bg-[#131b27] border-white/10' 
-              : 'bg-white border-slate-300'
-          }`}>
-            <div className="crosshair-corner crosshair-top-left" />
-            <div className="crosshair-corner crosshair-top-right" />
-            <div className="crosshair-corner crosshair-bottom-left" />
-            <div className="crosshair-corner crosshair-bottom-right" />
-
-            <div className={`flex items-center justify-between pb-3 border-b text-xs font-mono ${
-              isDark ? 'border-white/10 text-slate-400' : 'border-slate-200 text-slate-700'
-            }`}>
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-red-500"></span>
-                <span className="w-3 h-3 rounded-full bg-amber-500"></span>
-                <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
-                <span className={`ml-2 font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>ritesh_ai_engine.py</span>
-              </div>
-              <button 
-                onClick={onOpenTerminal}
-                className={`hover:underline flex items-center gap-1 font-black ${isDark ? 'text-cyan-400' : 'text-cyan-600'}`}
+          <div className="hero__cta">
+            <div className="magnetic">
+              <a href="#projects" onClick={scrollTo('projects')} className="btn btn--primary">
+                View projects
+              </a>
+            </div>
+            <div className="magnetic">
+              <a
+                href="/Ritesh_Chowdary_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--ghost"
               >
-                <Terminal className="w-3.5 h-3.5" /> Run CLI
-              </button>
+                View Resume ↗
+              </a>
             </div>
+            <div className="magnetic">
+              <a href="#contact" onClick={scrollTo('contact')} className="btn btn--ghost">
+                Contact me
+              </a>
+            </div>
+          </div>
 
-            <div className={`mt-4 font-mono text-xs space-y-2 p-5 rounded-2xl overflow-x-auto border ${
-              isDark 
-                ? 'bg-[#080c14] border-white/5 text-slate-300' 
-                : 'bg-slate-50 border-slate-200 text-slate-900'
-            }`}>
-              <div className="text-purple-400 font-bold"><span className="text-blue-400 font-black">import</span> cv2, yolo, flask, generativeai</div>
-              <div className="text-slate-500 font-extrabold"># Computer Vision & AI Developer Pipeline</div>
-              <div className="font-extrabold">internship = Company(<span className="text-emerald-400 font-black">'Doneshswari Technologies (dtskills.tech)'</span>)</div>
-              <div className="font-extrabold">models = [<span className="text-emerald-400 font-black">'YOLOv8 ALPR'</span>, <span className="text-emerald-400 font-black">'OpenCV Traffic Signals'</span>, <span className="text-emerald-400 font-black">'Gemini Career AI'</span>]</div>
-              <div className="text-cyan-400 flex items-center gap-1.5 pt-1 font-black">
-                <Sparkles className="w-3.5 h-3.5 animate-spin text-sky-400" />
-                <span>status = "Building Intelligent Ideas Into Real-World Products"</span>
-              </div>
-            </div>
+          <div className="hero__social">
+            <a
+              href="https://github.com/Riteshchowdary-07"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              title="GitHub Profile"
+              className="social-link"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ritesh-chowdary-7b1169333/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              title="LinkedIn Profile"
+              className="social-link"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.239-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+            <a
+              href="mailto:riteshmedasani2007@gmail.com"
+              aria-label="Email"
+              title="Send Email"
+              className="social-link"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </a>
           </div>
         </div>
 
+        <div className="hero__visual">
+          <div className="hero__panel">
+            <div className="hero__panel-glow" />
+            <span className="hero__panel-label">FOCUS &amp; SPECIALIZATION</span>
+            <strong>AI &amp; ML Developer</strong>
+            <p>
+              B.Tech Artificial Intelligence & Machine Learning student building computer vision pipelines, Generative AI applications, and intelligent software architectures.
+            </p>
+            <ul>
+              <li>OpenCV &amp; YOLOv8 Real-Time Processing</li>
+              <li>Generative AI &amp; Gemini API Integration</li>
+              <li>Agentic Systems &amp; Prompt Engineering</li>
+              <li>Full-Stack Web Apps (Flask, JavaScript)</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );
-};
+}

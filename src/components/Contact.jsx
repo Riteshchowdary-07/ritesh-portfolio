@@ -1,223 +1,159 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, Sparkles } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from './Icons';
-import { personalData } from '../data/portfolioData';
+import React, { useState, useEffect } from 'react';
 
-export const Contact = ({ isDark = true }) => {
+export default function Contact() {
+  const [timeStr, setTimeStr] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options = {
+        timeZone: 'Asia/Kolkata',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      };
+      setTimeStr(now.toLocaleTimeString('en-US', options) + ' IST');
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
     
-    // Open mailto client
-    window.location.href = `mailto:${personalData.contact.email}?subject=Contact from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}`;
-    
+    // Construct mailto link
+    const subject = encodeURIComponent(`Portfolio Message from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+    window.location.href = `mailto:riteshmedasani2007@gmail.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 4000);
   };
 
   return (
-    <section id="contact" className={`py-24 relative z-10 border-t transition-colors duration-300 ${
-      isDark ? 'bg-[#0b1017] border-white/10' : 'bg-white border-slate-300'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-mono font-black shadow-xs ${
-            isDark ? 'bg-[#131b27] border-white/10 text-slate-200' : 'bg-slate-100 border-slate-300 text-slate-900'
-          }`}>
-            <Sparkles className="w-3.5 h-3.5 text-cyan-500" />
-            <span>Direct Communication</span>
-          </div>
-
-          <h2 className={`font-bebas text-6xl sm:text-8xl md:text-9xl tracking-tight leading-none ${
-            isDark ? 'text-white' : 'text-slate-950'
-          }`}>
-            GET IN TOUCH
-          </h2>
-
-          <p className={`text-base sm:text-lg font-black ${
-            isDark ? 'text-slate-300' : 'text-slate-800'
-          }`}>
-            Available for internship opportunities, AI development projects, and research collaborations.
+    <section id="contact" className="section section--contact">
+      <div className="container">
+        <div className="section__header">
+          <div className="eyebrow">GET IN TOUCH</div>
+          <h2>Let's build something remarkable together</h2>
+          <p className="section__lead">
+            Whether you have a computer vision project, AI initiative, internship opportunity, or technical inquiry, feel free to reach out.
           </p>
         </div>
 
-        {/* Contact Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-5xl mx-auto items-start">
-          
-          {/* LEFT: Contact Cards */}
-          <div className="lg:col-span-5 space-y-6">
-            
-            {/* Email Card */}
-            <a
-              href={`mailto:${personalData.contact.email}`}
-              className={`p-6 rounded-3xl border shadow-md hover:border-cyan-500 hover:shadow-xl transition-all flex items-center gap-4 group ${
-                isDark ? 'bg-[#131b27] border-white/10' : 'bg-white border-slate-300'
-              }`}
-            >
-              <div className="p-3.5 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-500 shrink-0 group-hover:bg-cyan-500 group-hover:text-white transition-all">
-                <Mail className="w-6 h-6" />
-              </div>
-              <div className="overflow-hidden">
-                <div className="text-xs font-mono font-black text-slate-400">Email Address</div>
-                <div className={`text-sm sm:text-base font-black truncate group-hover:text-cyan-500 transition-colors ${
-                  isDark ? 'text-white' : 'text-slate-900'
-                }`}>
-                  {personalData.contact.email}
-                </div>
-              </div>
-            </a>
+        <div className="contact__grid">
+          <form className="contact__form" onSubmit={handleSubmit}>
+            <label>
+              <span>Your Name</span>
+              <input
+                type="text"
+                placeholder="e.g. Alex Smith"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required
+              />
+            </label>
 
-            {/* Phone Card */}
-            <a
-              href={`tel:${personalData.contact.phone}`}
-              className={`p-6 rounded-3xl border shadow-md hover:border-cyan-500 hover:shadow-xl transition-all flex items-center gap-4 group ${
-                isDark ? 'bg-[#131b27] border-white/10' : 'bg-white border-slate-300'
-              }`}
-            >
-              <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                <Phone className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-xs font-mono font-black text-slate-400">Phone Number</div>
-                <div className={`text-sm sm:text-base font-black group-hover:text-cyan-500 transition-colors ${
-                  isDark ? 'text-white' : 'text-slate-900'
-                }`}>
-                  {personalData.contact.phone}
-                </div>
-              </div>
-            </a>
+            <label>
+              <span>Your Email Address</span>
+              <input
+                type="email"
+                placeholder="e.g. alex@example.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+              />
+            </label>
 
-            {/* Location Card */}
-            <div className={`p-6 rounded-3xl border shadow-md flex items-center gap-4 ${
-              isDark ? 'bg-[#131b27] border-white/10' : 'bg-white border-slate-300'
-            }`}>
-              <div className="p-3.5 rounded-2xl bg-purple-500/10 border border-purple-500/30 text-purple-500 shrink-0">
-                <MapPin className="w-6 h-6" />
-              </div>
-              <div>
-                <div className="text-xs font-mono font-black text-slate-400">Current Location</div>
-                <div className={`text-sm sm:text-base font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  {personalData.location}
-                </div>
-              </div>
+            <label>
+              <span>Project Message / Details</span>
+              <textarea
+                rows="5"
+                placeholder="Describe your project, ideas, or opportunities..."
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                required
+              />
+            </label>
+
+            <button type="submit" className="btn btn--primary btn--xl" style={{ marginTop: '0.5rem' }}>
+              {submitted ? 'Opening Email Client...' : 'Send Message'}
+            </button>
+          </form>
+
+          <aside className="contact__aside">
+            <div>
+              <h3>Direct Email</h3>
+              <a href="mailto:riteshmedasani2007@gmail.com">riteshmedasani2007@gmail.com</a>
             </div>
 
-            {/* Social Buttons */}
-            <div className="flex gap-4 pt-2">
-              <a
-                href={personalData.contact.github}
-                target="_blank"
-                rel="noreferrer"
-                className={`flex-1 py-3.5 px-4 rounded-2xl border text-xs font-mono font-black flex items-center justify-center gap-2 transition-all hover:scale-105 shadow-md ${
-                  isDark ? 'bg-[#131b27] border-white/10 text-white hover:bg-slate-800' : 'bg-white border-slate-300 text-slate-900 hover:bg-slate-100'
-                }`}
-              >
-                <GithubIcon className="w-4 h-4" />
-                <span>GitHub Profile</span>
-              </a>
-
-              <a
-                href={personalData.contact.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="flex-1 py-3.5 px-4 rounded-2xl bg-cyan-500 hover:bg-cyan-600 text-white text-xs font-mono font-black flex items-center justify-center gap-2 transition-all hover:scale-105 shadow-md"
-              >
-                <LinkedinIcon className="w-4 h-4 text-white" />
-                <span className="text-white-brand">LinkedIn</span>
-              </a>
+            <div>
+              <h3>Phone Number</h3>
+              <a href="tel:+919866594904">+91 9866594904</a>
             </div>
 
-          </div>
+            <div>
+              <h3>Location</h3>
+              <p style={{ color: 'var(--text-muted)' }}>Chennai, Tamil Nadu, India</p>
+            </div>
 
-          {/* RIGHT: Direct Message Form */}
-          <div className="lg:col-span-7">
-            <form
-              onSubmit={handleSubmit}
-              className={`p-8 rounded-3xl border shadow-xl space-y-6 ${
-                isDark ? 'bg-[#131b27] border-white/10' : 'bg-white border-slate-300'
-              }`}
-            >
-              <h3 className={`text-2xl font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                Send Direct Message
-              </h3>
+            <div>
+              <h3>Local Time</h3>
+              <p className="contact__clock">{timeStr || '16:00:00 IST'}</p>
+            </div>
 
-              <div className="space-y-4">
-                <div>
-                  <label className={`block text-xs font-mono font-black mb-1.5 ${isDark ? 'text-slate-300' : 'text-slate-800'}`}>
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Enter your full name..."
-                    className={`w-full px-4 py-3 rounded-xl border text-sm font-bold focus:outline-none focus:border-cyan-500 transition-colors ${
-                      isDark ? 'bg-[#080c14] border-white/10 text-white placeholder-slate-500' : 'bg-slate-50 border-slate-300 text-slate-900 placeholder-slate-400'
-                    }`}
-                  />
-                </div>
-
-                <div>
-                  <label className={`block text-xs font-mono font-black mb-1.5 ${isDark ? 'text-slate-300' : 'text-slate-800'}`}>
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="Enter your email address..."
-                    className={`w-full px-4 py-3 rounded-xl border text-sm font-bold focus:outline-none focus:border-cyan-500 transition-colors ${
-                      isDark ? 'bg-[#080c14] border-white/10 text-white placeholder-slate-500' : 'bg-slate-50 border-slate-300 text-slate-900 placeholder-slate-400'
-                    }`}
-                  />
-                </div>
-
-                <div>
-                  <label className={`block text-xs font-mono font-black mb-1.5 ${isDark ? 'text-slate-300' : 'text-slate-800'}`}>
-                    Message
-                  </label>
-                  <textarea
-                    rows={4}
-                    required
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Write your message or inquiry here..."
-                    className={`w-full px-4 py-3 rounded-xl border text-sm font-bold focus:outline-none focus:border-cyan-500 transition-colors ${
-                      isDark ? 'bg-[#080c14] border-white/10 text-white placeholder-slate-500' : 'bg-slate-50 border-slate-300 text-slate-900 placeholder-slate-400'
-                    }`}
-                  />
-                </div>
+            <div>
+              <h3>Social Profiles</h3>
+              <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+                <a
+                  href="https://github.com/Riteshchowdary-07"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    background: 'var(--surface-muted)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '50%',
+                    width: '42px',
+                    height: '42px',
+                    display: 'grid',
+                    placeItems: 'center',
+                    color: 'var(--text)',
+                  }}
+                  title="GitHub"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/ritesh-chowdary-7b1169333/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    background: 'var(--surface-muted)',
+                    border: '1px solid var(--border)',
+                    borderRadius: '50%',
+                    width: '42px',
+                    height: '42px',
+                    display: 'grid',
+                    placeItems: 'center',
+                    color: 'var(--text)',
+                  }}
+                  title="LinkedIn"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.239-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg>
+                </a>
               </div>
-
-              <button
-                type="submit"
-                className="w-full py-4 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-white font-black text-sm flex items-center justify-center gap-2 transition-all shadow-md hover:scale-[1.01]"
-              >
-                <span className="text-white-brand">Send Message</span>
-                <Send className="w-4 h-4 text-white" />
-              </button>
-
-              {submitted && (
-                <div className="p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-mono font-black text-center flex items-center justify-center gap-2">
-                  <CheckCircle2 className="w-4 h-4" /> Message prepared in your default mail app!
-                </div>
-              )}
-            </form>
-          </div>
-
+            </div>
+          </aside>
         </div>
-
       </div>
     </section>
   );
-};
+}

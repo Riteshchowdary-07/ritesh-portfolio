@@ -1,100 +1,146 @@
 import React from 'react';
-import { Briefcase, Calendar, MapPin, Sparkles, CheckCircle2 } from 'lucide-react';
-import { experienceData } from '../data/portfolioData';
 
-export const Experience = ({ isDark = true }) => {
+export default function Experience() {
+  const experiences = [
+    {
+      period: '2025 – PRESENT',
+      role: 'Computer Vision & AI Developer Intern',
+      company: 'Doneshswari Technologies',
+      location: 'Chennai / Tirupati, India',
+      highlights: [
+        'Developed OpenCV and YOLOv8-based real-time video processing pipelines for traffic signal recognition and vehicle detection.',
+        'Implemented computer vision modules for automatic license plate recognition (ALPR) and traffic violation detection, including helmetless riding and mobile-phone usage identification.',
+        'Integrated vision-processing modules with web-based analytics interfaces for monitoring detected events.',
+        'Applied image preprocessing and object-tracking techniques to improve real-time detection performance.',
+      ],
+      tags: ['OpenCV', 'YOLOv8', 'ALPR', 'Computer Vision', 'Python', 'Object Tracking', 'Image Preprocessing'],
+    },
+    {
+      period: '2025',
+      role: 'AI Developer — Project-Based',
+      company: 'AI & ML Engineering Initiatives',
+      location: 'Project Role',
+      highlights: [
+        'Developed an AI Career Counselor web application using Python, Flask, JavaScript, and Google Gemini API.',
+        'Designed structured prompt engineering to generate personalized career recommendations based on user inputs.',
+        'Built responsive web interfaces for collecting user information and displaying dynamic AI-generated guidance.',
+      ],
+      tags: ['Python', 'Flask', 'Google Gemini API', 'Prompt Engineering', 'JavaScript', 'REST APIs'],
+    },
+    {
+      period: '2024 – 2025',
+      role: 'Frontend Developer — Project Role',
+      company: 'Web Engineering Initiatives',
+      location: 'Project Role',
+      highlights: [
+        'Developed responsive web interfaces using HTML5, CSS3, and JavaScript.',
+        'Built reusable frontend components and improved UI/UX usability.',
+        'Optimized page responsiveness and frontend performance across desktop and mobile devices.',
+      ],
+      tags: ['HTML5', 'CSS3', 'JavaScript', 'UI/UX', 'Responsive Design', 'Frontend Architecture'],
+    },
+  ];
+
   return (
-    <section id="experience" className={`py-24 relative z-10 border-t transition-colors duration-300 ${
-      isDark ? 'bg-[#0b1017] border-white/10' : 'bg-white border-slate-300'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-mono font-black shadow-xs ${
-            isDark ? 'bg-[#131b27] border-white/10 text-slate-200' : 'bg-slate-100 border-slate-300 text-slate-900'
-          }`}>
-            <Sparkles className="w-3.5 h-3.5 text-cyan-500" />
-            <span>Professional Career History</span>
+    <section id="experience" className="section section--experience">
+      <div className="container">
+        <div className="section__header">
+          <div className="eyebrow">EXPERIENCE</div>
+          <h2>Hands-on engineering across computer vision, GenAI, and web platforms</h2>
+        </div>
+
+        <ul className="experience__list">
+          {experiences.map((exp, idx) => (
+            <li key={idx} className="experience__item">
+              <div className="experience__meta">
+                <span className="experience__period">{exp.period}</span>
+                <span className="experience__location">{exp.location}</span>
+              </div>
+              <div className="experience__body">
+                <h3>
+                  {exp.role} <span>— {exp.company}</span>
+                </h3>
+                <ul>
+                  {exp.highlights.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+                <div className="experience__tags">
+                  {exp.tags.map((tag, tIdx) => (
+                    <span key={tIdx}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-start' }}>
+          <a
+            href="/Ritesh_Chowdary_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--ghost experience__resume"
+          >
+            View Full Resume (PDF) ↗
+          </a>
+        </div>
+
+        <div className="experience__extras">
+          <div className="experience__education">
+            <h3>Academic Background</h3>
+            <p style={{ fontWeight: 600, color: 'var(--text)' }}>
+              R.M.D Engineering College
+            </p>
+            <p>B.Tech in Artificial Intelligence &amp; Machine Learning (2024–2028)</p>
+            <span>CGPA: 7.22 / 10</span>
+
+            <div style={{ marginTop: '1.25rem' }}>
+              <p style={{ fontWeight: 600, color: 'var(--text)' }}>
+                Narayana Junior College
+              </p>
+              <p>Intermediate (MPC) | 2022–2024</p>
+              <span>Score: 86%</span>
+            </div>
           </div>
 
-          <h2 className={`font-bebas text-6xl sm:text-8xl md:text-9xl tracking-tight leading-none ${
-            isDark ? 'text-white' : 'text-slate-950'
-          }`}>
-            WORK EXPERIENCE
-          </h2>
+          <div className="experience__resume-projects">
+            <h3>Oracle Certifications</h3>
+            <ul>
+              <li>
+                <a
+                  href="/certificates/Oracle_Generative_AI_Professional.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Oracle Cloud GenAI Pro ↗
+                </a>
+                <p>2025 Certified Generative AI Professional</p>
+              </li>
+              <li>
+                <a
+                  href="/certificates/Oracle_APEX_Cloud_Developer_Professional.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Oracle APEX Cloud Dev ↗
+                </a>
+                <p>Certified Professional</p>
+              </li>
+              <li>
+                <a
+                  href="/certificates/Agentic_AI_Foundations_Associate.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Agentic AI Foundations ↗
+                </a>
+                <p>Oracle Certified Associate</p>
+              </li>
+            </ul>
+          </div>
         </div>
-
-        {/* Timeline Items */}
-        <div className="max-w-4xl mx-auto space-y-8">
-          {experienceData.map((exp, idx) => (
-            <div
-              key={exp.id}
-              className={`p-8 rounded-3xl border shadow-xl hover:border-cyan-500 hover:shadow-2xl transition-all duration-300 relative group ${
-                isDark ? 'bg-[#131b27] border-white/10' : 'bg-white border-slate-300'
-              }`}
-            >
-              <div className="flex flex-wrap items-start justify-between gap-4 border-b pb-4 mb-6 ${
-                isDark ? 'border-white/10' : 'border-slate-200'
-              }">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <Briefcase className="w-5 h-5 text-cyan-500" />
-                    <h3 className={`text-2xl font-black ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                      {exp.role}
-                    </h3>
-                  </div>
-                  <div className="text-sm font-mono text-cyan-500 font-extrabold flex items-center gap-2">
-                    <span>{exp.company}</span>
-                    {exp.location && (
-                      <span className="flex items-center gap-1 text-slate-400 text-xs">
-                        <MapPin className="w-3 h-3 text-slate-400" /> {exp.location}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className={`px-3 py-1 rounded-full border text-xs font-mono font-black flex items-center gap-1.5 ${
-                    isDark ? 'bg-[#080c14] border-white/10 text-slate-200' : 'bg-slate-100 border-slate-300 text-slate-900'
-                  }`}>
-                    <Calendar className="w-3.5 h-3.5 text-cyan-500" />
-                    {exp.period}
-                  </span>
-                </div>
-              </div>
-
-              {/* Responsibilities list */}
-              <ul className="space-y-2.5 mb-6">
-                {exp.responsibilities.map((resp, rIdx) => (
-                  <li key={rIdx} className={`text-xs sm:text-sm font-black flex items-start gap-2.5 ${
-                    isDark ? 'text-slate-300' : 'text-slate-800'
-                  }`}>
-                    <CheckCircle2 className="w-4 h-4 text-cyan-500 shrink-0 mt-0.5" />
-                    <span>{resp}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Tech Stack Pills */}
-              <div className="flex flex-wrap gap-1.5 pt-2">
-                {exp.tech.map((t, tIdx) => (
-                  <span
-                    key={tIdx}
-                    className={`px-3 py-1 rounded-lg border text-xs font-mono font-black ${
-                      isDark ? 'bg-[#080c14] border-white/10 text-slate-200' : 'bg-slate-100 border-slate-300 text-slate-900'
-                    }`}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-            </div>
-          ))}
-        </div>
-
       </div>
     </section>
   );
-};
+}

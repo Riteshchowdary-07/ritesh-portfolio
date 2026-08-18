@@ -1,150 +1,70 @@
-import React, { useState } from 'react';
-import { Mail, ArrowUp, Terminal, Copy, Check } from 'lucide-react';
-import { personalData } from '../data/portfolioData';
-import { MarqueeTicker } from './MarqueeTicker';
+import React from 'react';
 
-export const Footer = ({ onOpenTerminal }) => {
-  const [copied, setCopied] = useState(false);
-
-  const scrollToTop = () => {
+export default function Footer() {
+  const scrollToTop = (e) => {
+    e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(personalData.contact.email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const yOffset = -70;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
+  const scrollToContact = (e) => {
+    e.preventDefault();
+    const elem = document.getElementById('contact');
+    if (elem) elem.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <footer className="relative z-10 border-t-2 border-slate-300 bg-white text-black transition-colors duration-300">
-      
-      {/* Giant Infinite Marquee Banner on Pure White */}
-      <MarqueeTicker 
-        text="START A PROJECT • START A PROJECT" 
-        hasArrow={true}
-        onClick={() => scrollToSection('contact')}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12 bg-white">
-        
-        {/* Footer Neo-Bento Columns */}
-        <div className="framer-grid-container rounded-3xl bg-white p-8 border-2 border-slate-300 relative shadow-lg">
-          <div className="crosshair-corner crosshair-top-left" />
-          <div className="crosshair-corner crosshair-top-right" />
-          <div className="crosshair-corner crosshair-bottom-left" />
-          <div className="crosshair-corner crosshair-bottom-right" />
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            
-            {/* Initial Badge & Brand Info */}
-            <div className="md:col-span-4 flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-cyan-500 text-white font-mono font-black text-xl flex items-center justify-center border-2 border-slate-300 shadow-md shrink-0">
-                RC
-              </div>
-              <div className="space-y-1">
-                <h4 className="text-xl font-black text-black leading-tight">
-                  Kalapaneni Ritesh Chowdary
-                </h4>
-                <p className="text-xs text-cyan-brand font-mono font-black">
-                  AI & ML Student • Developer
-                </p>
-                <p className="text-xs text-black font-mono font-bold">
-                  R.M.D Engineering College
-                </p>
-              </div>
-            </div>
-
-            {/* Quick Navigation Links */}
-            <div className="md:col-span-3 space-y-2 text-xs font-mono">
-              <div className="text-black uppercase font-black tracking-wider mb-2">Navigation</div>
-              <div className="flex flex-col gap-1.5">
-                {['home', 'about', 'skills', 'experience', 'projects', 'contact'].map((linkId) => (
-                  <button
-                    key={linkId}
-                    onClick={() => scrollToSection(linkId)}
-                    className="text-left text-black hover:text-cyan-600 transition-colors capitalize flex items-center gap-1.5 font-black"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-950"></span>
-                    <span>{linkId}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Social Channels */}
-            <div className="md:col-span-2 space-y-2 text-xs font-mono">
-              <div className="text-black uppercase font-black tracking-wider mb-2">Socials</div>
-              <div className="flex flex-col gap-1.5 text-black font-black">
-                <a href={personalData.contact.linkedin} target="_blank" rel="noreferrer" className="hover:text-cyan-600 transition-colors">
-                  LinkedIn
-                </a>
-                <a href={personalData.contact.github} target="_blank" rel="noreferrer" className="hover:text-cyan-600 transition-colors">
-                  GitHub
-                </a>
-                <a href={`mailto:${personalData.contact.email}`} className="hover:text-cyan-600 transition-colors">
-                  Email Direct
-                </a>
-              </div>
-            </div>
-
-            {/* Click to Copy Email Card */}
-            <div className="md:col-span-3 space-y-2">
-              <div className="text-xs font-mono text-black font-black">Click to copy:</div>
-              <button
-                onClick={handleCopyEmail}
-                className="w-full p-4 rounded-2xl bg-white border-2 border-slate-300 hover:border-cyan-500 text-left transition-all group flex items-center justify-between shadow-sm"
-              >
-                <div className="overflow-hidden">
-                  <div className="text-[10px] font-mono text-black uppercase font-black">Direct Contact</div>
-                  <div className="text-xs font-black text-black truncate group-hover:text-cyan-600 transition-colors">
-                    {personalData.contact.email}
-                  </div>
-                </div>
-                <div className="p-2 rounded-xl bg-slate-100 border border-slate-300 text-black shrink-0">
-                  {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-                </div>
-              </button>
-            </div>
-
+    <>
+      <section className="big-cta">
+        <div className="container big-cta__inner">
+          <span className="eyebrow">HAVE A PROJECT IN MIND?</span>
+          <a href="#contact" onClick={scrollToContact} className="big-cta__title">
+            LET'S WORK TOGETHER
+          </a>
+          <p className="big-cta__lead">
+            Available for computer vision internships, Generative AI projects, and intelligent software engineering roles.
+          </p>
+          <div className="magnetic">
+            <a href="#contact" onClick={scrollToContact} className="btn btn--primary btn--xl">
+              Get in Touch
+            </a>
           </div>
         </div>
+      </section>
 
-        {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-black font-mono font-black gap-4">
-          <div className="flex items-center gap-2">
-            <span>Designed & Built by <strong className="text-black font-black">Kalapaneni Ritesh Chowdary</strong></span>
-            <button
-              onClick={onOpenTerminal}
-              className="p-1 rounded bg-slate-950 text-white border border-slate-800"
-              title="Terminal Easter Egg"
-            >
-              <Terminal className="w-3.5 h-3.5 text-cyan-400" />
-            </button>
+      <footer className="site-footer">
+        <div className="container site-footer__inner">
+          <div className="site-footer__brand">
+            <svg className="site-logo" width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2.5" y="2.5" width="59" height="59" rx="16" stroke="currentColor" strokeWidth="2" opacity="0.88" />
+              <path d="M22 48V16h12c4.5 0 8 3 8 7.5 0 3.5-2 6.5-5.5 7.2L43 48h-6.5l-5.8-15H28.5V48H22zm6.5-21h5.2c2.2 0 3.8-1.2 3.8-3s-1.6-3-3.8-3H28.5v6z" fill="currentColor" />
+              <circle cx="32" cy="10" r="2.5" fill="var(--accent)" />
+            </svg>
+            <span>© 2025–2026 KALAPANENI RITESH CHOWDARY</span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <span>© 2026 Kalapaneni Ritesh Chowdary</span>
-            <button
-              onClick={scrollToTop}
-              title="Scroll to Top"
-              className="p-2.5 rounded-full bg-slate-950 text-white hover:bg-slate-800 transition-all shadow-md"
+          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+            <a
+              href="https://github.com/Riteshchowdary-07"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--text-muted)' }}
             >
-              <ArrowUp className="w-4 h-4 text-white" />
-            </button>
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ritesh-chowdary-7b1169333/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--text-muted)' }}
+            >
+              LinkedIn
+            </a>
+            <a href="#home" onClick={scrollToTop} style={{ color: 'var(--accent)', cursor: 'pointer' }}>
+              Back to top ↑
+            </a>
           </div>
         </div>
-
-      </div>
-    </footer>
+      </footer>
+    </>
   );
-};
+}

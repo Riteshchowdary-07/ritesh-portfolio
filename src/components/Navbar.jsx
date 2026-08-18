@@ -1,234 +1,177 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Mail, 
-  Sun, 
-  Moon,
-  Menu, 
-  X, 
-  Terminal,
-  ExternalLink
-} from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from './Icons';
-import { personalData } from '../data/portfolioData';
 
-export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
-  const [scrolled, setScrolled] = useState(false);
+export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const navLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'certifications', label: 'Certifications' },
-    { id: 'education', label: 'Education' },
-    { id: 'contact', label: 'Contact' },
-  ];
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    return document.documentElement.getAttribute('data-theme') || 'dark';
+  });
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      if (window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
 
-      const sections = navLinks.map((link) => document.getElementById(link.id));
-      const scrollPosition = window.scrollY + 150;
+      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'certifications', 'contact'];
+      const scrollPos = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(navLinks[i].id);
+        const elem = document.getElementById(sections[i]);
+        if (elem && elem.offsetTop <= scrollPos) {
+          setActiveSection(sections[i]);
           break;
         }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
-    setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      const yOffset = -70;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    localStorage.setItem('portfolio-theme', nextTheme);
+  };
+
+  const navLinks = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'certifications', label: 'Certifications' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
+  const handleNavClick = (id) => {
+    setIsDrawerOpen(false);
+    const elem = document.getElementById(id);
+    if (elem) {
+      elem.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? isDark 
-          ? 'glass-nav py-3 bg-[#0b1017]/90 border-b border-white/10 shadow-2xl' 
-          : 'glass-nav py-3 bg-white/95 border-b border-slate-200 shadow-md'
-        : isDark
-          ? 'bg-[#0b1017]/70 py-4 border-b border-white/5'
-          : 'bg-white/90 py-4 border-b border-slate-200'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        
-        {/* Left: Pill Button & Socials */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => scrollToSection('contact')}
-            className="px-4 py-2 rounded-full bg-cyan-500 text-white font-black text-xs shadow-md hover:bg-cyan-600 transition-all flex items-center gap-2 group"
-          >
-            <span>i Want to Chat</span>
-            <span className="w-2 h-2 rounded-full bg-white animate-ping"></span>
-          </button>
-
-          {/* Social Icons */}
-          <div className="hidden sm:flex items-center gap-2.5">
-            <a 
-              href={personalData.contact.github} 
-              target="_blank" 
-              rel="noreferrer" 
-              className={`p-1.5 transition-colors ${isDark ? 'text-slate-300 hover:text-cyan-400' : 'text-slate-700 hover:text-cyan-600'}`}
-            >
-              <GithubIcon className="w-4 h-4" />
-            </a>
-            <a 
-              href={personalData.contact.linkedin} 
-              target="_blank" 
-              rel="noreferrer" 
-              className={`p-1.5 transition-colors ${isDark ? 'text-slate-300 hover:text-cyan-400' : 'text-slate-700 hover:text-cyan-600'}`}
-            >
-              <LinkedinIcon className="w-4 h-4" />
-            </a>
-            <a 
-              href={`mailto:${personalData.contact.email}`} 
-              className={`p-1.5 transition-colors ${isDark ? 'text-slate-300 hover:text-cyan-400' : 'text-slate-700 hover:text-cyan-600'}`}
-            >
-              <Mail className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-
-        {/* Center Logo Initial Badge */}
-        <button 
-          onClick={() => scrollToSection('home')}
-          className="flex flex-col items-center group"
+    <header className={`nav ${isScrolled ? 'is-scrolled' : ''}`}>
+      <div className="container nav__inner">
+        <a
+          href="#home"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick('home');
+          }}
+          className="nav__brand"
         >
-          <div className="relative">
-            <div className="absolute -inset-1 bg-cyan-400 rounded-full blur-xs opacity-70 group-hover:opacity-100 transition-opacity"></div>
-            <div className="relative w-10 h-10 rounded-full bg-cyan-500 text-white font-mono font-black text-xs flex items-center justify-center border-2 border-white shadow-md group-hover:scale-105 transition-transform">
-              RC
-            </div>
-          </div>
-          <span className={`text-[10px] font-black tracking-wider font-mono mt-0.5 ${isDark ? 'text-slate-300' : 'text-slate-800'}`}>
-            Home
-          </span>
-        </button>
+          <svg className="site-logo nav__logo" width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.5" y="2.5" width="59" height="59" rx="16" stroke="currentColor" strokeWidth="2" opacity="0.88" />
+            <path d="M22 48V16h12c4.5 0 8 3 8 7.5 0 3.5-2 6.5-5.5 7.2L43 48h-6.5l-5.8-15H28.5V48H22zm6.5-21h5.2c2.2 0 3.8-1.2 3.8-3s-1.6-3-3.8-3H28.5v6z" fill="currentColor" />
+            <rect x="23.2" y="36.4" width="17.6" height="3.6" rx="1.2" fill="var(--accent)" />
+          </svg>
+          <span className="nav__brand-text">RITESH CHOWDARY</span>
+        </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className={`hidden lg:flex items-center gap-1 px-3 py-1 rounded-full border shadow-inner ${
-          isDark 
-            ? 'bg-[#131b27] border-white/10' 
-            : 'bg-slate-100 border-slate-300'
-        }`}>
+        <ul className="nav__links">
           {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => scrollToSection(link.id)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-black transition-all duration-200 ${
-                activeSection === link.id
-                  ? 'bg-cyan-500 text-white font-black shadow-md'
-                  : isDark
-                    ? 'text-slate-300 hover:bg-slate-800 hover:text-white'
-                    : 'text-slate-800 hover:bg-slate-200'
-              }`}
-            >
-              {link.label}
-            </button>
+            <li key={link.id}>
+              <a
+                href={`#${link.id}`}
+                className={activeSection === link.id ? 'is-active' : ''}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(link.id);
+                }}
+              >
+                {link.label}
+              </a>
+            </li>
           ))}
-        </nav>
+          <li>
+            <a
+              href="/Ritesh_Chowdary_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--accent)' }}
+            >
+              Resume ↗
+            </a>
+          </li>
+        </ul>
 
-        {/* Right Action Icons & Theme Toggle */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="nav__actions">
           <button
-            onClick={onOpenTerminal}
-            title="Open CLI Terminal"
-            className={`p-2 rounded-full border transition-all ${
-              isDark 
-                ? 'bg-[#131b27] border-white/10 text-slate-200 hover:bg-slate-800' 
-                : 'bg-slate-100 border-slate-300 text-slate-800 hover:bg-slate-200'
-            }`}
+            onClick={toggleTheme}
+            className="theme-toggle"
+            aria-label="Toggle Theme"
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           >
-            <Terminal className="w-4 h-4" />
+            {theme === 'dark' ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="5" />
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            )}
           </button>
 
-          {/* Theme Toggle Button */}
           <button
-            onClick={() => setIsDark(!isDark)}
-            className={`p-2 rounded-full border transition-all ${
-              isDark
-                ? 'bg-[#131b27] border-white/10 text-amber-400 hover:bg-slate-800'
-                : 'bg-slate-100 border-slate-300 text-amber-600 hover:bg-slate-200'
-            }`}
-            title={isDark ? "Switch to Light Theme" : "Switch to Dark Theme"}
+            onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+            className="theme-toggle nav__mobile-toggle"
+            aria-label="Toggle Mobile Menu"
           >
-            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-800" />}
-          </button>
-
-          {/* Direct Resume Link (PDF in new tab) */}
-          <a
-            href="/Ritesh_Chowdary_Resume.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="px-5 py-2 rounded-full text-xs font-black text-white bg-cyan-500 hover:bg-cyan-600 shadow-md transition-all flex items-center gap-1.5"
-          >
-            <span className="text-white-brand">Resume</span>
-            <ExternalLink className="w-3.5 h-3.5 text-white" />
-          </a>
-        </div>
-
-        {/* Mobile Hamburger Toggle */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`p-2 rounded-lg ${isDark ? 'text-white' : 'text-slate-900'}`}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isDrawerOpen ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className={`lg:hidden border-b px-4 pt-3 pb-6 space-y-3 mt-2 shadow-2xl ${
-          isDark ? 'bg-[#0b1017] border-white/10' : 'bg-white border-slate-300'
-        }`}>
-          <div className="flex flex-col gap-1">
+      {isDrawerOpen && (
+        <div className="nav__drawer">
+          <ul>
             {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className={`px-4 py-2.5 rounded-xl text-sm font-black text-left transition-all ${
-                  activeSection === link.id
-                    ? 'bg-cyan-500 text-white font-black'
-                    : isDark
-                      ? 'text-slate-300 hover:bg-slate-900'
-                      : 'text-slate-800 hover:bg-slate-100'
-                }`}
-              >
-                {link.label}
-              </button>
+              <li key={link.id}>
+                <a
+                  href={`#${link.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.id);
+                  }}
+                >
+                  {link.label}
+                </a>
+              </li>
             ))}
-            
-            <a
-              href="/Ritesh_Chowdary_Resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="px-4 py-2.5 rounded-xl text-sm font-black text-left bg-cyan-500 text-white flex items-center justify-between mt-2"
-            >
-              <span>View Resume (PDF)</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
-          </div>
+            <li>
+              <a
+                href="/Ritesh_Chowdary_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'var(--accent)' }}
+              >
+                Resume (PDF) ↗
+              </a>
+            </li>
+          </ul>
         </div>
       )}
     </header>
   );
-};
+}
