@@ -1,10 +1,10 @@
 export const personalData = {
-  name: "Kalapaneni Ritesh Chowdary",
+  name: "KALAPANENI RITESH CHOWDARY",
   shortName: "Ritesh",
-  roles: ["AI & ML Engineering Student", "Computer Vision & GenAI Developer", "Frontend Developer"],
+  roles: ["AI & ML Engineering Student", "Computer Vision & GenAI Developer"],
   headline: "AI & ML Engineering Student | Computer Vision & GenAI Developer",
   location: "Chennai, Tamil Nadu, India",
-  bio: "AI & ML engineering student with hands-on experience in computer vision, Generative AI, and web-based AI applications. Experienced with OpenCV, YOLOv8, ALPR, Gemini API, Flask, and prompt engineering, with projects focused on traffic safety, healthcare, and education. 4× Oracle-certified in Generative AI, Agentic AI, APEX, and SQL.",
+  bio: "I am a B.Tech Artificial Intelligence & Machine Learning student focused on building practical AI systems across Computer Vision, Generative AI, and intelligent software applications.",
   status: "Available for Internship Opportunities",
   resumeUrl: "/Ritesh_Chowdary_Resume.pdf",
   contact: {
@@ -14,18 +14,25 @@ export const personalData = {
     github: "https://github.com/Riteshchowdary-07",
   },
   stats: [
-    { value: "08+", label: "AI & ML Projects", detail: "Built AI Counselor, OpenCV Traffic Models, Healthcare & SIH Apps" },
-    { value: "04", label: "Oracle Certifications", detail: "Certified Generative AI, Agentic AI, APEX & AI SQL Professional" },
-    { value: "03", label: "Developer Roles", detail: "Computer Vision Intern at Doneshswari Tech, AI & Frontend Developer" },
-    { value: "7.22", label: "CGPA", detail: "B.Tech AI & ML at R.M.D Eng. College" }
+    { value: "04", label: "Projects Built", detail: "Trivia-X, AI Counselor, Hospital Bed System, SIH 2025 Platform" },
+    { value: "04", label: "Oracle Certifications", detail: "Generative AI, Agentic AI, APEX Cloud & AI SQL" },
+    { value: "03", label: "Developer Roles", detail: "Computer Vision Intern at Doneshswari Tech, AI & Frontend Roles" },
+    { value: "7.22", label: "B.Tech CGPA", detail: "AI & ML Degree at R.M.D Engineering College" }
   ]
 };
 
 export const aboutData = {
-  title: "Turning Curiosity Into Code.",
+  title: "Building Practical AI Systems.",
   paragraphs: [
-    "I'm an Artificial Intelligence & Machine Learning engineering student with a strong foundation in Python, Data Structures & Algorithms, computer vision, Generative AI, and web development.",
-    "I enjoy building practical applications that combine AI and Computer Vision with user-friendly interfaces. My experience includes developing OpenCV and YOLOv8-based real-time video processing pipelines for traffic signal recognition and ALPR at Doneshswari Technologies, building LLM applications with Flask & Gemini API, and crafting responsive frontend UIs."
+    "I am a B.Tech Artificial Intelligence & Machine Learning student focused on building practical AI systems across Computer Vision, Generative AI, and intelligent software applications."
+  ],
+  focusAreas: [
+    "Computer Vision",
+    "Generative AI",
+    "Agentic AI",
+    "Machine Learning",
+    "Python",
+    "AI Applications"
   ]
 };
 
@@ -79,29 +86,33 @@ export const certificationsData = [
 
 export const skillsCategories = [
   {
-    title: "Languages",
+    title: "PROGRAMMING",
     icon: "Code2",
     skills: [
       { name: "Python", desc: "Core language for ML algorithms, OpenCV computer vision, and Flask micro-backends." },
       { name: "Java", desc: "Object-oriented programming, data structures, and foundational algorithms." },
       { name: "C++", desc: "High-performance problem solving and system-level data structures." },
-      { name: "JavaScript", desc: "Dynamic UI logic, ES6+, DOM manipulation, and REST API integration." },
+      { name: "JavaScript", desc: "Dynamic UI logic, ES6+, DOM manipulation, and API integration." },
       { name: "SQL", desc: "Database querying, data manipulation, and relational schema management." }
     ]
   },
   {
-    title: "AI & Computer Vision",
+    title: "AI / ML",
     icon: "BrainCircuit",
     skills: [
-      { name: "OpenCV", desc: "Real-time video stream analysis, traffic signal detection, and contour filtering." },
+      { name: "OpenCV", desc: "Real-time video stream analysis, traffic signal recognition, and contour filtering." },
       { name: "YOLOv8", desc: "Object detection, ALPR license plate recognition, and vehicle tracking." },
-      { name: "Computer Vision & ALPR", desc: "Automated license plate recognition and driver behavior monitoring." },
-      { name: "Machine Learning (KNN, Decision Trees, K-Means)", desc: "Supervised classification, predictive decision trees, and centroid clustering." },
-      { name: "Data Preprocessing & Model Evaluation", desc: "Feature scaling, accuracy evaluation metrics, precision, and recall." }
+      { name: "Computer Vision", desc: "Automated vision analysis, vehicle detection, and driver behavior monitoring." },
+      { name: "ALPR", desc: "Automatic license plate recognition and character segmentation." },
+      { name: "KNN", desc: "Supervised classification and distance metric evaluation." },
+      { name: "Decision Trees", desc: "Predictive decision tree modeling and feature selection." },
+      { name: "K-Means", desc: "Unsupervised centroid clustering and data grouping." },
+      { name: "Data Preprocessing", desc: "Feature scaling, normalization, and dataset transformation." },
+      { name: "Model Evaluation", desc: "Accuracy metrics, precision, recall, and evaluation curve analysis." }
     ]
   },
   {
-    title: "Generative AI",
+    title: "GENERATIVE AI",
     icon: "Sparkles",
     skills: [
       { name: "Google Gemini API", desc: "Integrating Gemini LLM APIs into Flask web applications." },
@@ -111,33 +122,36 @@ export const skillsCategories = [
     ]
   },
   {
-    title: "Web & Backend",
+    title: "WEB / BACKEND",
     icon: "Layout",
     skills: [
       { name: "Flask", desc: "Lightweight Python web framework for connecting AI/CV models with frontend UIs." },
       { name: "REST APIs", desc: "Building scalable JSON endpoints and backend web services." },
-      { name: "HTML5 & CSS3", desc: "Semantic markup, modern styling, flexbox/grid layout, and responsive UI." },
+      { name: "HTML5", desc: "Semantic markup and modern web structure." },
+      { name: "CSS3", desc: "Modern styling, flexbox/grid layout, and responsive UI." },
       { name: "JavaScript", desc: "Frontend interactivity and API communication." },
       { name: "Oracle APEX", desc: "Cloud web application development and Oracle APEX services." }
     ]
   },
   {
-    title: "Databases & Tools",
+    title: "DATABASE / CLOUD / TOOLS",
     icon: "Cpu",
     skills: [
-      { name: "Oracle SQL & PL/SQL", desc: "Relational database management, stored procedures, and data pipelines." },
-      { name: "Oracle Cloud Infrastructure (OCI)", desc: "Cloud infrastructure deployment and AI cloud services." },
-      { name: "Git & GitHub", desc: "Version control, commit history management, and open-source collaboration." },
+      { name: "Oracle SQL", desc: "Relational database querying and schema management." },
+      { name: "PL/SQL", desc: "Procedural SQL, database triggers, and stored functions." },
+      { name: "Oracle Cloud Infrastructure", desc: "Cloud infrastructure deployment and AI cloud services." },
+      { name: "Git", desc: "Local version control and branching." },
+      { name: "GitHub", desc: "Remote code repository management and open-source collaboration." },
       { name: "VS Code", desc: "Primary IDE for Python, C++, Java, and web development." }
     ]
   },
   {
-    title: "Core Fundamentals",
+    title: "FUNDAMENTALS",
     icon: "CheckCircle2",
     skills: [
       { name: "Data Structures & Algorithms", desc: "Arrays, lists, trees, graphs, sorting, and algorithmic efficiency." },
       { name: "Problem Solving", desc: "Analytical mindset for debugging complex computational tasks." },
-      { name: "UI/UX Design", desc: "Designing clean, intuitive, user-focused web interfaces." },
+      { name: "UI/UX", desc: "Designing clean, intuitive, user-focused web interfaces." },
       { name: "Debugging", desc: "Root cause analysis, browser tools, and code troubleshooting." }
     ]
   }
@@ -146,36 +160,43 @@ export const skillsCategories = [
 export const experienceData = [
   {
     id: 1,
-    role: "Computer Vision & AI Developer Intern",
+    role: "COMPUTER VISION & AI DEVELOPER INTERN",
     type: "Internship",
     period: "2025 – Present",
     company: "Doneshswari Technologies",
-    location: "Tirupati, India",
+    location: "Chennai, India",
     companyUrl: "https://dtskills.tech",
     responsibilities: [
-      "Developed OpenCV and YOLOv8-based real-time video processing pipelines for traffic signal recognition and vehicle detection.",
-      "Implemented computer vision modules for automatic license plate recognition (ALPR) and traffic violation detection, including helmetless riding and mobile-phone usage identification.",
-      "Integrated vision-processing modules with web-based analytics interfaces for monitoring detected events.",
-      "Applied image preprocessing and object-tracking techniques to improve real-time detection performance."
+      "OpenCV real-time video processing",
+      "YOLOv8 object detection",
+      "traffic signal recognition",
+      "vehicle detection",
+      "ALPR",
+      "traffic violation detection",
+      "helmetless riding detection",
+      "mobile-phone usage detection",
+      "image preprocessing",
+      "object tracking",
+      "analytics interface integration"
     ],
-    tech: ["OpenCV", "Python", "YOLOv8", "ALPR", "Computer Vision", "Traffic Signal Detection"]
+    tech: ["OpenCV", "YOLOv8", "ALPR", "Computer Vision", "Python", "Image Processing"]
   },
   {
     id: 2,
-    role: "AI Developer Intern",
+    role: "AI DEVELOPER — PROJECT-BASED",
     type: "Project-Based",
     period: "2025",
-    company: "AI & ML Engineering Initiatives",
+    company: "AI Career Counselor",
     responsibilities: [
-      "Developed an AI Career Counselor web application using Python, Flask, JavaScript, and Google Gemini API.",
+      "Developed an AI Career Counselor web application using Python, Flask, JavaScript, and Gemini API.",
       "Designed structured prompts to generate personalized career guidance based on user inputs.",
       "Built responsive interfaces for collecting user information and displaying AI-generated recommendations."
     ],
-    tech: ["Python", "Flask", "JavaScript", "Google Gemini API", "Prompt Engineering"]
+    tech: ["Python", "Flask", "JavaScript", "Gemini API", "Prompt Engineering"]
   },
   {
     id: 3,
-    role: "Frontend Developer",
+    role: "FRONTEND DEVELOPER — PROJECT ROLE",
     type: "Project Role",
     period: "2024 – 2025",
     company: "Web Engineering Initiatives",
@@ -184,7 +205,7 @@ export const experienceData = [
       "Built reusable frontend components and improved UI/UX usability.",
       "Optimized page responsiveness and frontend performance across devices."
     ],
-    tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "UI/UX Usability"]
+    tech: ["HTML", "CSS", "JavaScript", "UI/UX"]
   }
 ];
 
@@ -202,15 +223,15 @@ export const projectsData = [
     title: "Trivia-X — AI Traffic Violation Detection",
     subtitle: "Automated OpenCV & YOLOv8 Traffic Signal & Violation Monitoring",
     category: "Computer Vision & Traffic",
-    description: "Developed a computer vision system for real-time traffic video analysis using OpenCV and YOLOv8, implementing vehicle detection, traffic violation identification, and automatic license plate recognition.",
+    description: "AI-powered computer vision system for analyzing traffic footage, detecting vehicles and traffic violations, and performing automatic license plate recognition.",
     isFeatured: true,
     tech: ["Python", "OpenCV", "YOLOv8", "ALPR", "Computer Vision"],
     features: [
-      "OpenCV real-time traffic video analysis and signal recognition",
-      "YOLOv8 vehicle detection & violation identification",
+      "AI-powered computer vision system for analyzing traffic footage",
+      "Vehicle detection & traffic violation identification",
       "Automatic License Plate Recognition (ALPR)",
-      "Detection of helmetless riding and mobile-phone usage from traffic footage",
-      "Integrated analytics interface for traffic event monitoring"
+      "Helmetless riding & mobile-phone usage detection",
+      "Real-time video analytics interface integration"
     ],
     problem: "Manual traffic signal and violation monitoring is inefficient, error-prone, and incapable of continuous 24/7 oversight across dense city intersections.",
     solution: "Developed OpenCV video processing pipelines paired with YOLOv8 vision models to detect traffic signal changes, helmetless riding, mobile phone usage while driving, and automatically extract license plates.",
@@ -224,14 +245,14 @@ export const projectsData = [
     title: "AI Career Counselor",
     subtitle: "Personalized Career Guidance Platform",
     category: "AI / Machine Learning",
-    description: "Developed an AI-powered career guidance application using Flask and Google Gemini API, implementing structured prompt engineering to generate personalized career recommendations.",
+    description: "AI-powered career guidance application providing personalized career recommendations based on user inputs.",
     isFeatured: false,
     tech: ["Python", "Flask", "Gemini API", "JavaScript", "Prompt Engineering"],
     features: [
       "AI-powered career guidance recommendations",
       "Personalized responses tailored to user background",
       "Responsive web interface for user input and dynamic guidance",
-      "Seamless Google Gemini API integration",
+      "Seamless Gemini API integration",
       "Enhanced response accuracy via structured prompt engineering"
     ],
     problem: "Students and entry-level aspirants frequently struggle to navigate suitable career pathways aligned with their specific programming skills, ML interest, and educational background.",
@@ -244,16 +265,16 @@ export const projectsData = [
   {
     id: "hospital-bed-management",
     title: "Hospital Bed & Emergency Management System",
-    subtitle: "Real-Time Availability & AI Emergency Surge Platform",
+    subtitle: "Real-Time Availability & Emergency Platform",
     category: "Healthcare & Emergency",
-    description: "Designed a multi-portal healthcare platform for citizens, doctors, ambulances, and government officials, developing system architecture around hospital bed availability and emergency coordination.",
+    description: "Healthcare emergency management platform designed around hospital bed availability and coordination between citizens, doctors, ambulances, and government authorities.",
     isFeatured: false,
     tech: ["Python", "Flask", "JavaScript", "AI", "GPS", "HTML/CSS"],
     features: [
-      "Multi-portal healthcare platform (Citizens, Doctors, Ambulances, Govt Officials)",
-      "Real-time hospital bed availability search and tracking",
-      "Incorporated concepts for AI-based emergency surge prediction",
-      "GPS-assisted ambulance routing concept"
+      "Multi-portal healthcare platform (Citizens, Doctors, Ambulances, Govt Authorities)",
+      "Real-time hospital bed availability tracking and search",
+      "AI-based emergency surge prediction",
+      "GPS-assisted ambulance routing"
     ],
     problem: "During health emergencies or seasonal surges, patients waste critical time searching for available hospital beds without real-time visibility.",
     solution: "Architected a unified digital platform providing live bed inventory across ICU and general wards, combined with predictive AI models for emergency surge forecasting.",
@@ -267,14 +288,15 @@ export const projectsData = [
     title: "Digital Guidance Platform for Government College Enrollment",
     subtitle: "Smart India Hackathon (SIH) 2025 Flagship Solution",
     category: "SIH & Public Impact",
-    description: "Developed a Smart India Hackathon 2025 project focused on helping students discover suitable government colleges, designing recommendation logic based on academic eligibility, cutoff information, and career preferences.",
+    badge: "Smart India Hackathon 2025",
+    description: "Digital guidance platform designed to help students discover suitable government colleges using academic eligibility, cutoff information, and career preferences.",
     isFeatured: false,
     tech: ["Python", "Recommendation Systems", "Web Architecture", "UI/UX"],
     features: [
-      "Personalized government college and career pathway guidance",
-      "Recommendation logic based on academic eligibility and cutoffs",
-      "Government college enrollment assistance",
-      "Responsive web architecture and user-friendly interface"
+      "Personalized government college discovery platform",
+      "Recommendation engine based on academic eligibility and cutoffs",
+      "Government college enrollment guidance",
+      "Responsive web architecture and UI/UX design"
     ],
     problem: "Students in rural and tier-2/3 regions lack structured counseling regarding government college courses, cutoffs, and scholarship opportunities.",
     solution: "Created an accessible, recommendation-driven digital platform helping students discover suitable government colleges based on academic scores and career goals.",
@@ -289,14 +311,14 @@ export const educationData = [
   {
     institution: "R.M.D Engineering College",
     degree: "B.Tech in Artificial Intelligence & Machine Learning",
-    period: "2024 – 2028",
+    period: "2024–2028",
     grade: "CGPA: 7.22 / 10",
     details: "Specializing in AI/ML fundamentals, OpenCV & Computer Vision (YOLOv8), Generative AI, Data Structures & Algorithms, Python software development, and web application engineering."
   },
   {
     institution: "Narayana Junior College",
-    degree: "Intermediate (MPC)",
-    period: "2022 – 2024",
+    degree: "MPC",
+    period: "2022–2024",
     grade: "Percentage: 86%",
     details: "Focused on Mathematics, Physics, and Chemistry (MPC), building strong analytical and problem-solving foundations."
   }
