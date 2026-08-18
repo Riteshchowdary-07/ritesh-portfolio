@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 @layer base {
-  :root, html, body {
-    background-color: #ffffff !important;
-    color: #000000 !important;
+  html {
+    scroll-behavior: smooth;
     font-family: 'Inter', system-ui, sans-serif;
   }
 
-  body {
-    background-color: #ffffff !important;
-    color: #000000 !important;
+  /* Default Dark Mode Theme (Aakash Sharma / Vercel style: #0b1017) */
+  html.dark body {
+    background-color: #0b1017;
+    color: #f8fafc;
+  }
+
+  /* Light Mode Theme (#ffffff) */
+  html.light body {
+    background-color: #ffffff;
+    color: #0f172a;
   }
 }
 
@@ -26,54 +32,47 @@
   width: 8px;
   height: 8px;
 }
-::-webkit-scrollbar-track {
-  background: #ffffff;
+
+html.dark ::-webkit-scrollbar-track {
+  background: #0b1017;
 }
-::-webkit-scrollbar-thumb {
-  background: #000000;
+html.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
   border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover {
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
   background: #0284c7;
 }
 
-/* GLOBAL RULE: ALL TEXT MUST BE 100% PURE BLACK ON WHITE BACKGROUND */
-h1, h2, h3, h4, h5, h6, p, span, label, div, button, a, input, textarea {
-  color: #000000;
-}
-
-/* Accent color exceptions */
-.text-cyan-brand {
-  color: #0284c7 !important;
-}
-.text-emerald-brand {
-  color: #059669 !important;
-}
-.text-white-brand {
-  color: #ffffff !important;
-}
-
-/* Framer White Glass & Card Styles */
-.glass-card {
-  background: #ffffff !important;
+/* Glassmorphism Navigation */
+html.dark .glass-nav {
+  background: rgba(11, 16, 23, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid #cbd5e1 !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.glass-nav {
-  background: rgba(255, 255, 255, 0.98) !important;
+html.light .glass-nav {
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid #cbd5e1 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Framer Gridlines with Crosshair Intersections on Pure White */
+/* Crosshair Grid Corner Markers */
 .framer-grid-container {
   position: relative;
-  border: 1px solid #cbd5e1 !important;
-  background-color: #ffffff !important;
 }
 
 .crosshair-corner {
@@ -83,12 +82,21 @@ h1, h2, h3, h4, h5, h6, p, span, label, div, button, a, input, textarea {
   pointer-events: none;
   z-index: 20;
 }
-.crosshair-corner::before,
-.crosshair-corner::after {
+
+html.dark .crosshair-corner::before,
+html.dark .crosshair-corner::after {
   content: '';
   position: absolute;
-  background-color: #000000 !important;
+  background-color: rgba(255, 255, 255, 0.3);
 }
+
+html.light .crosshair-corner::before,
+html.light .crosshair-corner::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .crosshair-corner::before {
   top: 4px;
   left: 0;

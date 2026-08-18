@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Mail, 
   Sun, 
+  Moon,
   Menu, 
   X, 
   Terminal,
@@ -59,12 +60,16 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled 
-        ? 'glass-nav py-3 border-b-2 border-slate-300 shadow-md bg-white' 
-        : 'bg-white/95 py-4 border-b border-slate-200'
+        ? isDark 
+          ? 'glass-nav py-3 bg-[#0b1017]/90 border-b border-white/10 shadow-2xl' 
+          : 'glass-nav py-3 bg-white/95 border-b border-slate-200 shadow-md'
+        : isDark
+          ? 'bg-[#0b1017]/70 py-4 border-b border-white/5'
+          : 'bg-white/90 py-4 border-b border-slate-200'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Left: Pill Button */}
+        {/* Left: Pill Button & Socials */}
         <div className="flex items-center gap-3">
           <button
             onClick={() => scrollToSection('contact')}
@@ -75,15 +80,28 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
           </button>
 
           {/* Social Icons */}
-          <div className="hidden sm:flex items-center gap-2.5 text-black">
-            <a href={personalData.contact.github} target="_blank" rel="noreferrer" className="p-1.5 hover:text-cyan-600 transition-colors">
-              <GithubIcon className="w-4 h-4 text-black" />
+          <div className="hidden sm:flex items-center gap-2.5">
+            <a 
+              href={personalData.contact.github} 
+              target="_blank" 
+              rel="noreferrer" 
+              className={`p-1.5 transition-colors ${isDark ? 'text-slate-300 hover:text-cyan-400' : 'text-slate-700 hover:text-cyan-600'}`}
+            >
+              <GithubIcon className="w-4 h-4" />
             </a>
-            <a href={personalData.contact.linkedin} target="_blank" rel="noreferrer" className="p-1.5 hover:text-cyan-600 transition-colors">
-              <LinkedinIcon className="w-4 h-4 text-black" />
+            <a 
+              href={personalData.contact.linkedin} 
+              target="_blank" 
+              rel="noreferrer" 
+              className={`p-1.5 transition-colors ${isDark ? 'text-slate-300 hover:text-cyan-400' : 'text-slate-700 hover:text-cyan-600'}`}
+            >
+              <LinkedinIcon className="w-4 h-4" />
             </a>
-            <a href={`mailto:${personalData.contact.email}`} className="p-1.5 hover:text-cyan-600 transition-colors">
-              <Mail className="w-4 h-4 text-black" />
+            <a 
+              href={`mailto:${personalData.contact.email}`} 
+              className={`p-1.5 transition-colors ${isDark ? 'text-slate-300 hover:text-cyan-400' : 'text-slate-700 hover:text-cyan-600'}`}
+            >
+              <Mail className="w-4 h-4" />
             </a>
           </div>
         </div>
@@ -99,13 +117,17 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
               RC
             </div>
           </div>
-          <span className="text-[10px] font-black text-black tracking-wider font-mono mt-0.5">
+          <span className={`text-[10px] font-black tracking-wider font-mono mt-0.5 ${isDark ? 'text-slate-300' : 'text-slate-800'}`}>
             Home
           </span>
         </button>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-1 bg-slate-100 px-3 py-1 rounded-full border-2 border-slate-300 shadow-inner">
+        <nav className={`hidden lg:flex items-center gap-1 px-3 py-1 rounded-full border shadow-inner ${
+          isDark 
+            ? 'bg-[#131b27] border-white/10' 
+            : 'bg-slate-100 border-slate-300'
+        }`}>
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -113,7 +135,9 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
               className={`px-3.5 py-1.5 rounded-full text-xs font-black transition-all duration-200 ${
                 activeSection === link.id
                   ? 'bg-cyan-500 text-white font-black shadow-md'
-                  : 'text-black hover:bg-slate-200 font-extrabold'
+                  : isDark
+                    ? 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    : 'text-slate-800 hover:bg-slate-200'
               }`}
             >
               {link.label}
@@ -126,17 +150,26 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
           <button
             onClick={onOpenTerminal}
             title="Open CLI Terminal"
-            className="p-2 rounded-full bg-slate-100 border border-slate-300 text-black hover:bg-slate-200 transition-all"
+            className={`p-2 rounded-full border transition-all ${
+              isDark 
+                ? 'bg-[#131b27] border-white/10 text-slate-200 hover:bg-slate-800' 
+                : 'bg-slate-100 border-slate-300 text-slate-800 hover:bg-slate-200'
+            }`}
           >
-            <Terminal className="w-4 h-4 text-black" />
+            <Terminal className="w-4 h-4" />
           </button>
 
+          {/* Theme Toggle Button */}
           <button
             onClick={() => setIsDark(!isDark)}
-            className="p-2 rounded-full bg-slate-100 border border-slate-300 text-amber-500 transition-all hover:scale-105"
-            title="Switch Theme"
+            className={`p-2 rounded-full border transition-all ${
+              isDark
+                ? 'bg-[#131b27] border-white/10 text-amber-400 hover:bg-slate-800'
+                : 'bg-slate-100 border-slate-300 text-amber-600 hover:bg-slate-200'
+            }`}
+            title={isDark ? "Switch to Light Theme" : "Switch to Dark Theme"}
           >
-            <Sun className="w-4 h-4 text-amber-500" />
+            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-800" />}
           </button>
 
           {/* Direct Resume Link (PDF in new tab) */}
@@ -155,7 +188,7 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
         <div className="flex items-center gap-2 lg:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-black"
+            className={`p-2 rounded-lg ${isDark ? 'text-white' : 'text-slate-900'}`}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -164,7 +197,9 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b-2 border-slate-300 px-4 pt-3 pb-6 space-y-3 mt-2 shadow-2xl">
+        <div className={`lg:hidden border-b px-4 pt-3 pb-6 space-y-3 mt-2 shadow-2xl ${
+          isDark ? 'bg-[#0b1017] border-white/10' : 'bg-white border-slate-300'
+        }`}>
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <button
@@ -173,7 +208,9 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
                 className={`px-4 py-2.5 rounded-xl text-sm font-black text-left transition-all ${
                   activeSection === link.id
                     ? 'bg-cyan-500 text-white font-black'
-                    : 'text-black hover:bg-slate-100'
+                    : isDark
+                      ? 'text-slate-300 hover:bg-slate-900'
+                      : 'text-slate-800 hover:bg-slate-100'
                 }`}
               >
                 {link.label}
@@ -184,7 +221,7 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
               href="/Ritesh_Chowdary_Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="px-4 py-2.5 rounded-xl text-sm font-black text-left bg-cyan-500 text-white flex items-center justify-between"
+              className="px-4 py-2.5 rounded-xl text-sm font-black text-left bg-cyan-500 text-white flex items-center justify-between mt-2"
             >
               <span>View Resume (PDF)</span>
               <ExternalLink className="w-4 h-4" />

@@ -17,72 +17,81 @@ import { Footer } from './components/Footer';
 import { TerminalEasterEgg } from './components/TerminalEasterEgg';
 
 export function App() {
-  const [isDark, setIsDark] = useState(false);
+  // Default to Dark theme matching Aakash Sharma template (#0b1017)
+  const [isDark, setIsDark] = useState(true);
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
-  // Enforce Light / White theme class on html document root
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.add('light');
-    root.classList.remove('dark');
+    if (isDark) {
+      root.classList.add('dark');
+      root.classList.remove('light');
+    } else {
+      root.classList.add('light');
+      root.classList.remove('dark');
+    }
   }, [isDark]);
 
   return (
-    <div className="relative min-h-screen bg-white text-black selection:bg-cyan-500/30 selection:text-cyan-900 overflow-x-hidden">
-      {/* Dynamic 2D Canvas Particle Neural Background with Interactive Cursor Effect on Pure White */}
-      <NeuralNetworkBg />
+    <div className={`relative min-h-screen transition-colors duration-300 ${
+      isDark ? 'bg-[#0b1017] text-slate-100' : 'bg-white text-slate-900'
+    } selection:bg-cyan-500/30 selection:text-cyan-400 overflow-x-hidden`}>
+      
+      {/* Motion Canvas Neural Background */}
+      <NeuralNetworkBg isDark={isDark} />
 
-      {/* Framer-Style Navigation Header */}
+      {/* Modern Top Header Navigation */}
       <Navbar
         isDark={isDark}
         setIsDark={setIsDark}
         onOpenTerminal={() => setIsTerminalOpen(true)}
       />
 
-      {/* Main Content Sections on Pure White Background */}
-      <main className="relative z-10 bg-white">
+      {/* Main Content Sections */}
+      <main className="relative z-10">
         {/* Hero Section */}
-        <Hero onOpenTerminal={() => setIsTerminalOpen(true)} />
+        <Hero isDark={isDark} onOpenTerminal={() => setIsTerminalOpen(true)} />
 
         {/* Continuous Marquee Ticker Banner: SERVICES • WHAT I OFFER */}
-        <MarqueeTicker text="SERVICES • WHAT I OFFER • SERVICES • WHAT I OFFER" />
+        <MarqueeTicker isDark={isDark} text="SERVICES • WHAT I OFFER • SERVICES • WHAT I OFFER" />
 
-        {/* Featured Work & 8 Projects Grid */}
-        <Projects />
+        {/* Featured Projects Grid */}
+        <Projects isDark={isDark} />
 
-        {/* Framer Bento Grid ABOUT ME Section */}
-        <AboutBento />
+        {/* About Bento Grid Section */}
+        <AboutBento isDark={isDark} />
 
         {/* Development Methodology Process Steps */}
-        <ProcessSection />
+        <ProcessSection isDark={isDark} />
 
-        {/* Categorized Interactive Skills */}
-        <Skills />
+        {/* Categorized Technical Skills */}
+        <Skills isDark={isDark} />
 
         {/* Verified Oracle Industry Certifications */}
-        <Certifications />
+        <Certifications isDark={isDark} />
 
-        {/* Internship & Development Timeline */}
-        <Experience />
+        {/* Internship & Experience Timeline */}
+        <Experience isDark={isDark} />
 
-        {/* Academic Education Qualifications */}
-        <Education />
+        {/* Academic Qualifications */}
+        <Education isDark={isDark} />
 
-        {/* Interactive FAQ Pill Accordion */}
-        <FaqSection />
+        {/* FAQ Accordion */}
+        <FaqSection isDark={isDark} />
 
-        {/* Resume Banner */}
-        <Resume />
+        {/* Resume PDF Download Banner */}
+        <Resume isDark={isDark} />
 
-        {/* Contact Direct Messaging Form */}
-        <Contact />
+        {/* Contact Form */}
+        <Contact isDark={isDark} />
       </main>
 
-      {/* Framer Footer with Infinite Ticker */}
-      <Footer onOpenTerminal={() => setIsTerminalOpen(true)} />
+      {/* Footer Banner */}
+      <Footer isDark={isDark} onOpenTerminal={() => setIsTerminalOpen(true)} />
 
-      {/* Interactive Modals */}
+      {/* Terminal CLI Modal */}
       <TerminalEasterEgg
+        isDark={isDark}
         isOpen={isTerminalOpen}
         onClose={() => setIsTerminalOpen(false)}
       />
