@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalapaneni Ritesh Chowdary - Master AI/ML Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #0f172a;
+      background-color: #f1f5f9;
+      line-height: 1.4;
+      font-size: 12.5px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      padding: 20px 0;
+    }
+    
+    .resume-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 36px 44px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .resume-card {
+        margin: 0;
+        padding: 20px 28px;
+        box-shadow: none;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0;
+      }
+      .no-print {
+        display: none !important;
+      }
+      a {
+        text-decoration: none;
+        color: #0284c7;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 6mm 8mm;
+      }
+    }
+
+    .top-action-bar {
+      max-width: 800px;
+      margin: 0 auto 16px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0f172a;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 6px;
+    }
+
+    .btn-pdf {
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 12.5px;
+    }
+
+    .btn-pdf:hover {
+      background: #0369a1;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    h1.name {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      color: #0f172a;
+      text-transform: uppercase;
+    }
+
+    .target-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0284c7;
+      margin-top: 2px;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      margin-top: 6px;
+      font-size: 11.5px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .contact-row a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-sep {
+      color: #94a3b8;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #0f172a;
+      border-bottom: 1.5px solid #cbd5e1;
+      padding-bottom: 2px;
+      margin-bottom: 6px;
+    }
+
+    p.summary {
+      font-size: 12px;
+      color: #334155;
+      line-height: 1.45;
+    }
+
+    /* Skills Table */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 145px 1fr;
+      gap: 3px 10px;
+      font-size: 11.5px;
+    }
+
+    .skill-cat {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .skill-val {
+      color: #334155;
+    }
+
+    /* Experience & Projects */
+    .entry-item {
+      margin-bottom: 8px;
+    }
+
+    .entry-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .entry-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .entry-role {
+      font-weight: 700;
+      font-size: 12px;
+      color: #0f172a;
+    }
+
+    .entry-company {
+      font-weight: 600;
+      color: #0284c7;
+    }
+
+    .entry-date {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .entry-tech {
+      font-size: 10.5px;
+      font-style: italic;
+      color: #475569;
+      margin-bottom: 2px;
+    }
+
+    ul.bullets {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ul.bullets li {
+      position: relative;
+      padding-left: 12px;
+      margin-bottom: 2px;
+      font-size: 11.5px;
+      color: #334155;
+      line-height: 1.38;
+    }
+
+    ul.bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      top: -1px;
+      color: #0284c7;
+      font-weight: bold;
+    }
+
+    /* Certifications & Education */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px 12px;
+      font-size: 11.5px;
+    }
+
+    .cert-card {
+      background: #f8fafc;
+      border-left: 2.5px solid #0284c7;
+      padding: 3px 8px;
+    }
+
+    .cert-title {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 11px;
+    }
+
+    .cert-issuer {
+      font-size: 10px;
+      color: #64748b;
+    }
+
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 11.5px;
+      margin-bottom: 2px;
+    }
+
+    .edu-school {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .edu-degree {
+      color: #334155;
+    }
+
+    .edu-grade {
+      font-weight: 700;
+      color: #0284c7;
+      margin-left: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-action-bar no-print">
+    <div>
+      <strong>Master AI/ML Engineering Resume</strong> — <span>Targeted 9.5-10/10 ATS Resume</span>
+    </div>
+    <button class="btn-pdf" onclick="window.print()">🖨️ Download / Print PDF</button>
+  </div>
+
+  <div class="resume-card">
+    
+    <!-- HEADER -->
+    <header>
+      <h1 class="name">Kalapaneni Ritesh Chowdary</h1>
+      <div class="target-title">AI & ML Engineering Student | Computer Vision & GenAI Developer</div>
+      <div class="contact-row">
+        <span>+91 9866594904</span>
+        <span class="contact-sep">|</span>
+        <a href="mailto:riteshmedasani2007@gmail.com">riteshmedasani2007@gmail.com</a>
+        <span class="contact-sep">|</span>
+        <a href="https://www.linkedin.com/in/ritesh-chowdary-7b1169333/" target="_blank">LinkedIn</a>
+        <span class="contact-sep">|</span>
+        <a href="https://github.com/Riteshchowdary-07" target="_blank">GitHub</a>
+        <span class="contact-sep">|</span>
+        <span>Chennai, Tamil Nadu, India</span>
+      </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <section>
+      <div class="section-title">Summary</div>
+      <p class="summary">
+        AI & ML engineering student with hands-on experience in computer vision, Generative AI, and web-based AI applications. Experienced with OpenCV, YOLOv8, ALPR, Gemini API, Flask, and prompt engineering, with projects focused on traffic safety, healthcare, and education. 4× Oracle-certified in Generative AI, Agentic AI, APEX, and SQL.
+      </p>
+    </section>
+
+    <!-- TECHNICAL SKILLS -->
+    <section>
+      <div class="section-title">Technical Skills</div>
+      <div class="skills-grid">
+        <div class="skill-cat">Programming:</div>
+        <div class="skill-val">Python, Java, C++, JavaScript, SQL</div>
+
+        <div class="skill-cat">AI / ML:</div>
+        <div class="skill-val">OpenCV, YOLOv8, Computer Vision, ALPR, KNN, Decision Trees, K-Means, Data Preprocessing, Model Evaluation</div>
+
+        <div class="skill-cat">Generative AI:</div>
+        <div class="skill-val">Google Gemini API, Generative AI, Prompt Engineering, Agentic AI</div>
+
+        <div class="skill-cat">Web / Backend:</div>
+        <div class="skill-val">Flask, REST APIs, HTML5, CSS3, JavaScript, Oracle APEX</div>
+
+        <div class="skill-cat">Databases / Tools:</div>
+        <div class="skill-val">Oracle SQL, PL/SQL, Oracle Cloud Infrastructure, Git, GitHub, VS Code</div>
+
+        <div class="skill-cat">Fundamentals:</div>
+        <div class="skill-val">Data Structures & Algorithms, Problem Solving, UI/UX, Debugging</div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section>
+      <div class="section-title">Experience</div>
+
+      <div class="entry-item">
+        <div class="entry-row">
+          <div>
+            <span class="entry-role">Computer Vision & AI Developer Intern</span> — 
+            <span class="entry-company">Doneshswari Technologies</span>
+          </div>
+          <div class="entry-date">2025 – Present | Chennai, India</div>
+        </div>
+        <ul class="bullets">
+          <li>Developed OpenCV and YOLOv8-based real-time video processing pipelines for traffic signal recognition and vehicle detection.</li>
+          <li>Implemented computer vision modules for ALPR and traffic violation detection, including helmetless riding and mobile-phone usage identification.</li>
+          <li>Integrated vision-processing modules with web-based analytics interfaces for monitoring detected events.</li>
+          <li>Applied image preprocessing and object-tracking techniques to improve real-time detection performance.</li>
+        </ul>
+      </div>
+
+      <div class="entry-item">
+        <div class="entry-row">
+          <div>
+            <span class="entry-role">AI Developer Intern — Project-Based</span> — 
+            <span class="entry-company">AI & ML Engineering Initiatives</span>
+          </div>
+          <div class="entry-date">2025 | Chennai, India</div>
+        </div>
+        <ul class="bullets">
+          <li>Developed an AI Career Counselor web application using Python, Flask, JavaScript, and Google Gemini API.</li>
+          <li>Designed structured prompts to generate personalized career guidance based on user inputs.</li>
+          <li>Built responsive interfaces for collecting user information and displaying AI-generated recommendations.</li>
+        </ul>
+      </div>
+
+      <div class="entry-item">
+        <div class="entry-row">
+          <div>
+            <span class="entry-role">Frontend Developer — Project Role</span> — 
+            <span class="entry-company">Web Engineering Initiatives</span>
+          </div>
+          <div class="entry-date">2024 – 2025 | Chennai, India</div>
+        </div>
+        <ul class="bullets">
+          <li>Developed responsive web interfaces using HTML, CSS, and JavaScript.</li>
+          <li>Built reusable frontend components and improved UI/UX usability.</li>
+          <li>Optimized page responsiveness and frontend performance across devices.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section>
+      <div class="section-title">Projects</div>
+
+      <div class="entry-item">
+        <div class="entry-row">
+          <span class="entry-role">Trivia-X — AI Traffic Violation Detection</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <div class="entry-tech">Tech: Python, OpenCV, YOLOv8, ALPR, Computer Vision</div>
+        <ul class="bullets">
+          <li>Developed a computer vision system for real-time traffic video analysis using OpenCV and YOLOv8.</li>
+          <li>Implemented vehicle detection, traffic violation identification, and automatic license plate recognition.</li>
+          <li>Explored detection of helmetless riding and mobile-phone usage from traffic footage.</li>
+        </ul>
+      </div>
+
+      <div class="entry-item">
+        <div class="entry-row">
+          <span class="entry-role">AI Career Counselor</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <div class="entry-tech">Tech: Python, Flask, Gemini API, JavaScript, Prompt Engineering</div>
+        <ul class="bullets">
+          <li>Developed an AI-powered career guidance application using Flask and Google Gemini API.</li>
+          <li>Implemented structured prompt engineering to generate personalized career recommendations.</li>
+          <li>Built a responsive web interface for user input and dynamic AI-generated guidance.</li>
+        </ul>
+      </div>
+
+      <div class="entry-item">
+        <div class="entry-row">
+          <span class="entry-role">Hospital Bed & Emergency Management System</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <div class="entry-tech">Tech: Python, Flask, JavaScript, AI, GPS, HTML/CSS</div>
+        <ul class="bullets">
+          <li>Designed a multi-portal healthcare management platform for citizens, doctors, ambulances, and government officials.</li>
+          <li>Developed the system architecture around hospital bed availability and emergency coordination.</li>
+          <li>Incorporated concepts for AI-based emergency surge prediction and GPS-assisted ambulance routing.</li>
+        </ul>
+      </div>
+
+      <div class="entry-item">
+        <div class="entry-row">
+          <span class="entry-role">Digital Guidance Platform — SIH 2025</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <div class="entry-tech">Tech: Python, Recommendation Systems, Web Architecture, UI/UX</div>
+        <ul class="bullets">
+          <li>Developed a Smart India Hackathon 2025 project focused on helping students discover suitable government colleges.</li>
+          <li>Designed recommendation logic based on academic eligibility, cutoff information, and career preferences.</li>
+          <li>Focused on accessible guidance for students across web/mobile interfaces.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section>
+      <div class="section-title">Certifications</div>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-title">Oracle Cloud Infrastructure 2025 Certified Generative AI Professional</div>
+          <div class="cert-issuer">Oracle University</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-title">Oracle APEX Cloud Developer Certified Professional</div>
+          <div class="cert-issuer">Oracle University</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-title">Agentic AI Certified Foundations Associate</div>
+          <div class="cert-issuer">Oracle University</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-title">Oracle AI Database SQL Certified Associate</div>
+          <div class="cert-issuer">Oracle University</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+      <div class="section-title">Education</div>
+      <div class="edu-row">
+        <div>
+          <span class="edu-school">R.M.D Engineering College</span> — 
+          <span class="edu-degree">B.Tech, Artificial Intelligence & Machine Learning</span>
+          <span class="edu-grade">CGPA: 7.22/10</span>
+        </div>
+        <div class="entry-date">2024–2028 | Chennai</div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <span class="edu-school">Narayana Junior College</span> — 
+          <span class="edu-degree">MPC</span>
+          <span class="edu-grade">86%</span>
+        </div>
+        <div class="entry-date">2022–2024</div>
+      </div>
+      <div style="font-size: 10.5px; color: #475569; margin-top: 2px;">
+        <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Machine Learning, Computer Vision, Database Management Systems, Python Programming
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

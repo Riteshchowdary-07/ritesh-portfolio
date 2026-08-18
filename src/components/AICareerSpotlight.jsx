@@ -13,7 +13,7 @@ import {
 import { projectsData } from '../data/portfolioData';
 
 export const AICareerSpotlight = ({ onOpenModal }) => {
-  const project = projectsData[0];
+  const project = projectsData.find(p => p.id === 'ai-career-counselor') || projectsData[0];
 
   const samplePrompts = [
     "What career path should I choose if I enjoy Python and AI?",

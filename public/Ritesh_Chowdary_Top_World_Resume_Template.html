@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalapaneni Ritesh Chowdary - World Class Resume Template</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1e293b;
+      background-color: #0f172a;
+      line-height: 1.45;
+      font-size: 13px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      padding: 20px 0;
+    }
+    
+    .resume-container {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 44px 50px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+      border-radius: 4px;
+      position: relative;
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .resume-container {
+        margin: 0;
+        padding: 28px 36px;
+        box-shadow: none;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0;
+      }
+      .no-print {
+        display: none !important;
+      }
+      a {
+        text-decoration: none;
+        color: #1e40af;
+      }
+      @page {
+        size: letter portrait;
+        margin: 6mm 8mm;
+      }
+    }
+
+    .top-bar {
+      max-width: 820px;
+      margin: 0 auto 16px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e293b;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-download {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s ease-in-out;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-download:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .header {
+      text-align: center;
+      border-bottom: 2px solid #1e3a8a;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .name {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+      text-transform: uppercase;
+    }
+
+    .headline {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #2563eb;
+      margin-top: 3px;
+      letter-spacing: 0.3px;
+    }
+
+    .contact-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .contact-bar a {
+      color: #1e40af;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-bar a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-sep {
+      color: #94a3b8;
+    }
+
+    .section {
+      margin-bottom: 16px;
+    }
+
+    .section-header {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #1e3a8a;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 3px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .entry {
+      margin-bottom: 11px;
+    }
+
+    .entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .title-company {
+      font-size: 13px;
+      color: #0f172a;
+    }
+
+    .title-company strong {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .title-company span.company {
+      font-weight: 600;
+      color: #2563eb;
+    }
+
+    .date-location {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #475569;
+      text-align: right;
+    }
+
+    .tech-subhead {
+      font-size: 11px;
+      color: #475569;
+      font-weight: 600;
+      margin-top: 1px;
+      margin-bottom: 3px;
+    }
+
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 4px;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 14px;
+      margin-bottom: 3px;
+      font-size: 12px;
+      color: #334155;
+      line-height: 1.45;
+    }
+
+    ul.bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      top: -1px;
+      color: #2563eb;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .skills-table td {
+      padding: 3px 0;
+      vertical-align: top;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .skills-table td.skill-cat {
+      width: 165px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .skills-table td.skill-val {
+      color: #334155;
+    }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 14px;
+    }
+
+    .cert-item {
+      background-color: #f8fafc;
+      border-left: 3px solid #2563eb;
+      padding: 5px 10px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .cert-name {
+      font-weight: 700;
+      font-size: 11.5px;
+      color: #0f172a;
+    }
+
+    .cert-detail {
+      font-size: 10.5px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar no-print">
+    <div>
+      <strong style="font-size: 15px;">Jake's Resume / Harvard Standard Template</strong>
+      <span style="opacity: 0.85; font-size: 12px; display: block;">#1 Ranked Tech Resume Layout Worldwide • 100% ATS Compatible</span>
+    </div>
+    <button class="btn-download" onclick="window.print()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"></path></svg>
+      Download / Print PDF
+    </button>
+  </div>
+
+  <div class="resume-container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <h1 class="name">Kalapaneni Ritesh Chowdary</h1>
+      <div class="headline">AI & Machine Learning Engineering Student | Computer Vision & GenAI Developer</div>
+      <div class="contact-bar">
+        <span>+91 9866594904</span>
+        <span class="contact-sep">|</span>
+        <a href="mailto:riteshmedasani2007@gmail.com">riteshmedasani2007@gmail.com</a>
+        <span class="contact-sep">|</span>
+        <a href="https://www.linkedin.com/in/ritesh-chowdary-7b1169333/" target="_blank">LinkedIn</a>
+        <span class="contact-sep">|</span>
+        <a href="https://github.com/Riteshchowdary-07" target="_blank">GitHub</a>
+        <span class="contact-sep">|</span>
+        <span>Chennai, TN, India</span>
+      </div>
+    </header>
+
+    <!-- EDUCATION -->
+    <section class="section">
+      <div class="section-header">Education</div>
+      <div class="entry">
+        <div class="entry-header">
+          <div class="title-company">
+            <strong>R.M.D Engineering College</strong> — <span class="company">B.Tech in Artificial Intelligence & Machine Learning</span>
+          </div>
+          <div class="date-location">2024 – 2028 | CGPA: 7.22 / 10</div>
+        </div>
+        <div class="tech-subhead">Coursework: Data Structures & Algorithms, Computer Vision, Machine Learning, Python, Database Management Systems</div>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <div class="title-company">
+            <strong>Narayana Junior College</strong> — <span class="company">Intermediate (10+2) – MPC</span>
+          </div>
+          <div class="date-location">2022 – 2024 | Percentage: 86%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS -->
+    <section class="section">
+      <div class="section-header">Technical Skills</div>
+      <table class="skills-table">
+        <tr>
+          <td class="skill-cat">Languages:</td>
+          <td class="skill-val">Python, Java, C++, JavaScript (ES6+), SQL, HTML5, CSS3</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">AI / ML & Vision:</td>
+          <td class="skill-val">OpenCV, YOLOv8, ALPR (License Plate Recognition), Video Analytics, Gemini API, Prompt Engineering, Agentic AI, KNN, Decision Trees, K-Means, Model Evaluation</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">Web & Microservices:</td>
+          <td class="skill-val">Flask, Oracle APEX, RESTful APIs, Glassmorphic UI/UX, Canvas API</td>
+        </tr>
+        <tr>
+          <td class="skill-cat">Tools & Databases:</td>
+          <td class="skill-val">Git, GitHub, VS Code, Oracle Cloud Infrastructure (OCI), PL/SQL, DSA, Debugging</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section">
+      <div class="section-header">Work Experience</div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="title-company">
+            <strong>Computer Vision & AI Developer Intern</strong> — <span class="company">Doneshswari Technologies</span>
+          </div>
+          <div class="date-location">2025 – Present | Chennai, India</div>
+        </div>
+        <ul class="bullet-list">
+          <li>Architected OpenCV and YOLOv8 real-time video processing pipelines for traffic signal recognition and state detection.</li>
+          <li>Engineered ALPR (Automatic License Plate Recognition) models alongside driver violation tracking (helmetless riding & mobile usage).</li>
+          <li>Integrated OpenCV vision modules with web analytics dashboards for live operational monitoring across variable lighting conditions.</li>
+          <li>Optimized object tracking algorithms and image preprocessing filters to maximize frame rates and detection accuracy.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="title-company">
+            <strong>AI Developer Intern (Project-Based)</strong> — <span class="company">AI & ML Engineering Initiatives</span>
+          </div>
+          <div class="date-location">2025 | Chennai, India</div>
+        </div>
+        <ul class="bullet-list">
+          <li>Designed and deployed an AI Career Counselor Platform using Python, Flask, JavaScript, and Google Gemini AI API.</li>
+          <li>Formulated structured prompt engineering frameworks to improve career recommendation contextual precision by 35%.</li>
+          <li>Built responsive glassmorphic UI components to streamline user skill input collection and dynamic response rendering.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="title-company">
+            <strong>Frontend Developer (Project Role)</strong> — <span class="company">Web Engineering Initiatives</span>
+          </div>
+          <div class="date-location">2024 – 2025 | Chennai, India</div>
+        </div>
+        <ul class="bullet-list">
+          <li>Built interactive, responsive web interfaces utilizing HTML5, CSS3, and JavaScript adhering to modern UI/UX standards.</li>
+          <li>Created modular reusable components, eliminating code duplication and boosting frontend performance across devices.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section">
+      <div class="section-header">Key Projects</div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="title-company">
+            <strong>Trivia-X: Traffic Signal & Violation Detection</strong> | <em>OpenCV, YOLOv8, Python, ALPR</em>
+          </div>
+          <div class="date-location">2025</div>
+        </div>
+        <ul class="bullet-list">
+          <li>Built automated 24/7 traffic camera analytics for signal recognition, vehicle detection, helmetless riding, and phone usage identification.</li>
+          <li>Implemented ROI cropping and ALPR extraction algorithms for instant violation logging and ticket generation.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="title-company">
+            <strong>Hospital Bed & Emergency Surge System</strong> | <em>Python, Flask, JavaScript, AI Surge Model, GPS</em>
+          </div>
+          <div class="date-location">2025</div>
+        </div>
+        <ul class="bullet-list">
+          <li>Architected a 4-portal healthcare ecosystem (Citizen, Doctor, Ambulance, Govt) with real-time hospital bed inventory tracking.</li>
+          <li>Integrated predictive AI surge modeling to assist emergency services in routing ambulances to available ICU beds efficiently.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="title-company">
+            <strong>Digital Guidance for Govt College Enrollment (SIH 2025)</strong> | <em>Python, Recommendation Engine</em>
+          </div>
+          <div class="date-location">2025</div>
+        </div>
+        <ul class="bullet-list">
+          <li>Developed a flagship Smart India Hackathon solution matching rural and tier-2/3 students with government college programs.</li>
+          <li>Engineered algorithmic matching based on cutoffs, academic eligibility, and career aspirations.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section">
+      <div class="section-header">Certifications</div>
+      <div class="certs-grid">
+        <div class="cert-item">
+          <div class="cert-name">Oracle OCI 2025 Certified Generative AI Professional</div>
+          <div class="cert-detail">Oracle University • ID: 102487703OCI25GAIOCP</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">Oracle APEX Cloud Developer Certified Professional</div>
+          <div class="cert-detail">Oracle University • ID: 102907599APEX24CDOCP</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">Agentic AI Certified Foundations Associate</div>
+          <div class="cert-detail">Oracle University • ID: 102487703AAI26OFA</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">Oracle AI Database SQL Certified Associate</div>
+          <div class="cert-detail">Oracle University • ID: 102907599DB23AISQLOCA</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
