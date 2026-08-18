@@ -3,11 +3,12 @@ import {
   ArrowRight, 
   FileText, 
   Sparkles, 
-  Terminal
+  Terminal,
+  ExternalLink
 } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 
-export const Hero = ({ onOpenResumeModal, onOpenTerminal }) => {
+export const Hero = ({ onOpenTerminal }) => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -59,7 +60,7 @@ export const Hero = ({ onOpenResumeModal, onOpenTerminal }) => {
           <span className="text-black font-black">{personalData.status}</span>
         </div>
 
-        {/* Framer Headline: AI & ML DEVELOPER (Clean, No Logo) */}
+        {/* Framer Headline: AI & ML DEVELOPER */}
         <div className="space-y-6">
           
           <div className="flex items-center justify-center">
@@ -100,13 +101,17 @@ export const Hero = ({ onOpenResumeModal, onOpenTerminal }) => {
             <ArrowRight className="w-4 h-4 text-cyan-600" />
           </button>
 
-          <button
-            onClick={onOpenResumeModal}
+          {/* Direct Resume Link (PDF in new tab) */}
+          <a
+            href="/Ritesh_Chowdary_Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
             className="px-6 py-4 rounded-full font-black text-sm text-white bg-cyan-500 hover:bg-cyan-600 flex items-center gap-2 transition-all hover:scale-105 active:scale-95 shadow-md"
           >
             <FileText className="w-4 h-4 text-white" />
-            <span className="text-white-brand">Resume</span>
-          </button>
+            <span className="text-white-brand">View Original Resume (PDF)</span>
+            <ExternalLink className="w-3.5 h-3.5 text-white" />
+          </a>
         </div>
 
         {/* Code Visual Card Container on Pure White */}

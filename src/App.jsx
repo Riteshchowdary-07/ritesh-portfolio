@@ -7,18 +7,17 @@ import { Projects } from './components/Projects';
 import { AboutBento } from './components/AboutBento';
 import { ProcessSection } from './components/ProcessSection';
 import { Skills } from './components/Skills';
+import { Certifications } from './components/Certifications';
 import { Experience } from './components/Experience';
 import { Education } from './components/Education';
 import { FaqSection } from './components/FaqSection';
 import { Resume } from './components/Resume';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { ResumeModal } from './components/ResumeModal';
 import { TerminalEasterEgg } from './components/TerminalEasterEgg';
 
 export function App() {
   const [isDark, setIsDark] = useState(false);
-  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
   // Enforce Light / White theme class on html document root
@@ -38,16 +37,12 @@ export function App() {
         isDark={isDark}
         setIsDark={setIsDark}
         onOpenTerminal={() => setIsTerminalOpen(true)}
-        onOpenResumeModal={() => setIsResumeModalOpen(true)}
       />
 
       {/* Main Content Sections on Pure White Background */}
       <main className="relative z-10 bg-white">
-        {/* Hero Section with Giant Bebas Typography & Center Avatar */}
-        <Hero
-          onOpenResumeModal={() => setIsResumeModalOpen(true)}
-          onOpenTerminal={() => setIsTerminalOpen(true)}
-        />
+        {/* Hero Section */}
+        <Hero onOpenTerminal={() => setIsTerminalOpen(true)} />
 
         {/* Continuous Marquee Ticker Banner: SERVICES • WHAT I OFFER */}
         <MarqueeTicker text="SERVICES • WHAT I OFFER • SERVICES • WHAT I OFFER" />
@@ -64,6 +59,9 @@ export function App() {
         {/* Categorized Interactive Skills */}
         <Skills />
 
+        {/* Verified Oracle Industry Certifications */}
+        <Certifications />
+
         {/* Internship & Development Timeline */}
         <Experience />
 
@@ -74,7 +72,7 @@ export function App() {
         <FaqSection />
 
         {/* Resume Banner */}
-        <Resume onOpenResumeModal={() => setIsResumeModalOpen(true)} />
+        <Resume />
 
         {/* Contact Direct Messaging Form */}
         <Contact />
@@ -84,11 +82,6 @@ export function App() {
       <Footer onOpenTerminal={() => setIsTerminalOpen(true)} />
 
       {/* Interactive Modals */}
-      <ResumeModal
-        isOpen={isResumeModalOpen}
-        onClose={() => setIsResumeModalOpen(false)}
-      />
-
       <TerminalEasterEgg
         isOpen={isTerminalOpen}
         onClose={() => setIsTerminalOpen(false)}

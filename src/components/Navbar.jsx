@@ -4,12 +4,13 @@ import {
   Sun, 
   Menu, 
   X, 
-  Terminal
+  Terminal,
+  ExternalLink
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { personalData } from '../data/portfolioData';
 
-export const Navbar = ({ isDark, setIsDark, onOpenTerminal, onOpenResumeModal }) => {
+export const Navbar = ({ isDark, setIsDark, onOpenTerminal }) => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,6 +21,7 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal, onOpenResumeModal })
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
+    { id: 'certifications', label: 'Certifications' },
     { id: 'education', label: 'Education' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -137,13 +139,16 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal, onOpenResumeModal })
             <Sun className="w-4 h-4 text-amber-500" />
           </button>
 
-          {/* Bright Cyan Resume Button */}
-          <button
-            onClick={onOpenResumeModal}
-            className="px-5 py-2 rounded-full text-xs font-black text-white bg-cyan-500 hover:bg-cyan-600 shadow-md transition-all"
+          {/* Direct Resume Link (PDF in new tab) */}
+          <a
+            href="/Ritesh_Chowdary_Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="px-5 py-2 rounded-full text-xs font-black text-white bg-cyan-500 hover:bg-cyan-600 shadow-md transition-all flex items-center gap-1.5"
           >
             <span className="text-white-brand">Resume</span>
-          </button>
+            <ExternalLink className="w-3.5 h-3.5 text-white" />
+          </a>
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -174,6 +179,16 @@ export const Navbar = ({ isDark, setIsDark, onOpenTerminal, onOpenResumeModal })
                 {link.label}
               </button>
             ))}
+            
+            <a
+              href="/Ritesh_Chowdary_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="px-4 py-2.5 rounded-xl text-sm font-black text-left bg-cyan-500 text-white flex items-center justify-between"
+            >
+              <span>View Resume (PDF)</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
         </div>
       )}

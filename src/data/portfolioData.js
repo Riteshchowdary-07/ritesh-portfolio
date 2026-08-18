@@ -5,6 +5,7 @@ export const personalData = {
   headline: "Building Intelligent Ideas Into Real-World Products.",
   bio: "Motivated AI & ML student passionate about artificial intelligence, computer vision, software development, web technologies, and building practical solutions that solve real-world problems.",
   status: "Available for Internship Opportunities",
+  resumeUrl: "/Ritesh_Chowdary_Resume.pdf",
   contact: {
     phone: "+91 9866594904",
     email: "riteshmedasani2007@gmail.com",
@@ -13,9 +14,9 @@ export const personalData = {
   },
   stats: [
     { value: "08+", label: "AI & ML Projects", detail: "Built AI Counselor, OpenCV Traffic Models, Healthcare & SIH Apps" },
+    { value: "04", label: "Oracle Certifications", detail: "Certified Generative AI, Agentic AI, APEX & AI SQL Professional" },
     { value: "03", label: "Developer Roles", detail: "Computer Vision Intern at Doneshswari Tech, AI & Frontend Developer" },
-    { value: "7.22", label: "CGPA", detail: "B.Tech AI & ML at R.M.D Eng. College" },
-    { value: "2024–2028", label: "B.Tech Journey", detail: "4-Year Specialized AI/ML Degree" }
+    { value: "7.22", label: "CGPA", detail: "B.Tech AI & ML at R.M.D Eng. College" }
   ]
 };
 
@@ -26,6 +27,54 @@ export const aboutData = {
     "I enjoy building practical applications that combine AI and Computer Vision with user-friendly interfaces. My experience includes developing OpenCV-based traffic signal detection models at Doneshswari Technologies, building LLM applications with Flask & Gemini, and crafting responsive frontend UIs."
   ]
 };
+
+export const certificationsData = [
+  {
+    id: "oracle-gen-ai",
+    title: "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
+    issuer: "Oracle University",
+    level: "Certified Professional",
+    date: "September 01, 2025",
+    validUntil: "September 01, 2027",
+    certId: "102487703OCI25GAIOCP",
+    pdfUrl: "/certificates/Oracle_Generative_AI_Professional.pdf",
+    skills: ["Generative AI", "OCI Cloud Infrastructure", "LLMs", "Prompt Engineering"],
+    badgeColor: "bg-red-600 text-white"
+  },
+  {
+    id: "oracle-apex",
+    title: "Oracle APEX Cloud Developer Certified Professional",
+    issuer: "Oracle University",
+    level: "Certified Professional",
+    date: "October 23, 2025",
+    certId: "102907599APEX24CDOCP",
+    pdfUrl: "/certificates/Oracle_APEX_Cloud_Developer_Professional.pdf",
+    skills: ["Oracle APEX", "Cloud Web Development", "PL/SQL", "RESTful Web Services"],
+    badgeColor: "bg-red-600 text-white"
+  },
+  {
+    id: "agentic-ai",
+    title: "Agentic AI Certified Foundations Associate",
+    issuer: "Oracle University",
+    level: "Certified Foundations Associate",
+    date: "July 20, 2026",
+    certId: "102487703AAI26OFA",
+    pdfUrl: "/certificates/Agentic_AI_Foundations_Associate.pdf",
+    skills: ["Agentic AI Systems", "Autonomous AI Agents", "LLM Workflows"],
+    badgeColor: "bg-cyan-600 text-white"
+  },
+  {
+    id: "oracle-ai-sql",
+    title: "Oracle AI Database SQL Certified Associate",
+    issuer: "Oracle University",
+    level: "Certified Associate",
+    date: "August 12, 2026",
+    certId: "102907599DB23AISQLOCA",
+    pdfUrl: "/certificates/Oracle_AI_Database_SQL_Associate.pdf",
+    skills: ["SQL Database", "AI Data Analytics", "Query Optimization"],
+    badgeColor: "bg-blue-600 text-white"
+  }
+];
 
 export const skillsCategories = [
   {
@@ -112,7 +161,7 @@ export const experienceData = [
     company: "Web Development Initiatives",
     responsibilities: [
       "Built interactive web interfaces using HTML, CSS, and JavaScript.",
-      "Focused on UI/UX improvements and usability across mobile and desktop devices.",
+      "Focused on UI/UX improvements for better usability across mobile and desktop devices.",
       "Created reusable components to maintain code cleanliness and performance.",
       "Optimized website performance and responsiveness."
     ],
