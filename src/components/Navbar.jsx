@@ -93,7 +93,7 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="/Ritesh_Chowdary_Resume.pdf"
+              href="./Ritesh_Chowdary_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: 'var(--accent)' }}
@@ -161,7 +161,7 @@ export default function Navbar() {
             ))}
             <li>
               <a
-                href="/Ritesh_Chowdary_Resume.pdf"
+                href="./Ritesh_Chowdary_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: 'var(--accent)' }}

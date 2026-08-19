@@ -1,6 +1,10 @@
 import React from 'react';
 
 export default function Certifications() {
+  const getCertUrl = (fileName) => {
+    return `./certificates/${fileName}`;
+  };
+
   const certs = [
     {
       title: 'Oracle Cloud Infrastructure 2025 Certified Generative AI Professional',
@@ -8,7 +12,7 @@ export default function Certifications() {
       badge: 'Certified Professional',
       year: '2025',
       code: 'OCI 2025 GenAI',
-      file: '/certificates/Oracle_Generative_AI_Professional.pdf',
+      file: getCertUrl('Oracle_Generative_AI_Professional.pdf'),
     },
     {
       title: 'Oracle APEX Cloud Developer Certified Professional',
@@ -16,7 +20,7 @@ export default function Certifications() {
       badge: 'Certified Professional',
       year: '2025',
       code: 'APEX Cloud Dev',
-      file: '/certificates/Oracle_APEX_Cloud_Developer_Professional.pdf',
+      file: getCertUrl('Oracle_APEX_Cloud_Developer_Professional.pdf'),
     },
     {
       title: 'Agentic AI Certified Foundations Associate',
@@ -24,7 +28,7 @@ export default function Certifications() {
       badge: 'Certified Associate',
       year: '2026',
       code: 'Agentic AI Associate',
-      file: '/certificates/Agentic_AI_Foundations_Associate.pdf',
+      file: getCertUrl('Agentic_AI_Foundations_Associate.pdf'),
     },
     {
       title: 'Oracle AI Database SQL Certified Associate',
@@ -32,7 +36,7 @@ export default function Certifications() {
       badge: 'Certified Associate',
       year: '2026',
       code: 'AI DB SQL Associate',
-      file: '/certificates/Oracle_AI_Database_SQL_Associate.pdf',
+      file: getCertUrl('Oracle_AI_Database_SQL_Associate.pdf'),
     },
   ];
 

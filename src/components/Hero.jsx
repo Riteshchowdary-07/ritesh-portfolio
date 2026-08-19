@@ -30,7 +30,7 @@ export default function Hero() {
           </h1>
 
           <p className="hero__headline">
-            AI & ML Engineering Student | Computer Vision & GenAI Developer
+            AI &amp; ML Engineering Student | Computer Vision &amp; GenAI Developer
           </p>
 
           <p className="hero__support">
@@ -45,7 +45,7 @@ export default function Hero() {
             </div>
             <div className="magnetic">
               <a
-                href="/Ritesh_Chowdary_Resume.pdf"
+                href="./Ritesh_Chowdary_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn--ghost"
@@ -105,7 +105,7 @@ export default function Hero() {
             <span className="hero__panel-label">FOCUS &amp; SPECIALIZATION</span>
             <strong>AI &amp; ML Developer</strong>
             <p>
-              B.Tech Artificial Intelligence & Machine Learning student building computer vision pipelines, Generative AI applications, and intelligent software architectures.
+              B.Tech Artificial Intelligence &amp; Machine Learning student building computer vision pipelines, Generative AI applications, and intelligent software architectures.
             </p>
             <ul>
               <li>OpenCV &amp; YOLOv8 Real-Time Processing</li>

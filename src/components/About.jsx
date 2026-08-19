@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SkillEndorseModal from './SkillEndorseModal';
 
 export default function About() {
+  const [selectedSkill, setSelectedSkill] = useState(null);
+
   const focusAreas = [
     { title: 'Computer Vision', icon: '👁️' },
     { title: 'Generative AI', icon: '✨' },
@@ -21,7 +24,7 @@ export default function About() {
         <div className="about__grid">
           <div className="about__copy">
             <p>
-              I am a B.Tech Artificial Intelligence & Machine Learning student focused on building practical AI systems across Computer Vision, Generative AI, and intelligent software applications.
+              I am a B.Tech Artificial Intelligence &amp; Machine Learning student focused on building practical AI systems across Computer Vision, Generative AI, and intelligent software applications.
             </p>
             <p>
               My work spans real-time video processing pipelines for traffic safety, LLM-powered career counseling systems, healthcare emergency management platforms, and cloud database solutions.
@@ -35,7 +38,12 @@ export default function About() {
             <h3>Core Focus Areas</h3>
             <ul className="skill-list">
               {focusAreas.map((area, idx) => (
-                <li key={idx}>
+                <li
+                  key={idx}
+                  onClick={() => setSelectedSkill(area.title)}
+                  style={{ cursor: 'pointer' }}
+                  title={`Click to endorse ${area.title}`}
+                >
                   <span style={{ fontSize: '1.25rem' }}>{area.icon}</span>
                   <span>{area.title}</span>
                 </li>
@@ -44,6 +52,10 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      {selectedSkill && (
+        <SkillEndorseModal skillName={selectedSkill} onClose={() => setSelectedSkill(null)} />
+      )}
     </section>
   );
 }

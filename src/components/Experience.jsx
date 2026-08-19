@@ -77,7 +77,7 @@ export default function Experience() {
 
         <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'flex-start' }}>
           <a
-            href="/Ritesh_Chowdary_Resume.pdf"
+            href="./Ritesh_Chowdary_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn--ghost experience__resume"
@@ -109,7 +109,7 @@ export default function Experience() {
             <ul>
               <li>
                 <a
-                  href="/certificates/Oracle_Generative_AI_Professional.pdf"
+                  href="./certificates/Oracle_Generative_AI_Professional.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -119,7 +119,7 @@ export default function Experience() {
               </li>
               <li>
                 <a
-                  href="/certificates/Oracle_APEX_Cloud_Developer_Professional.pdf"
+                  href="./certificates/Oracle_APEX_Cloud_Developer_Professional.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -129,7 +129,7 @@ export default function Experience() {
               </li>
               <li>
                 <a
-                  href="/certificates/Agentic_AI_Foundations_Associate.pdf"
+                  href="./certificates/Agentic_AI_Foundations_Associate.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

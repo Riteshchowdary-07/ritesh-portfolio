@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SkillEndorseModal from './SkillEndorseModal';
 
 export default function Skills() {
+  const [selectedSkill, setSelectedSkill] = useState(null);
+
   const skillCategories = [
     {
       category: 'PROGRAMMING',
@@ -32,10 +35,10 @@ export default function Skills() {
     <section id="skills" className="section section--skills">
       <div className="container">
         <div className="section__header">
-          <div className="eyebrow">TECHNICAL SKILLS</div>
+          <div className="eyebrow">TECHNICAL SKILLS &amp; COURSES</div>
           <h2>Tools, frameworks, and core engineering domains</h2>
           <p className="section__lead">
-            A comprehensive overview of artificial intelligence libraries, web frameworks, databases, cloud platforms, and computer vision technologies I use daily.
+            Click any skill or topic below to endorse, collaborate, or express interest.
           </p>
         </div>
 
@@ -71,29 +74,48 @@ export default function Skills() {
               >
                 {cat.category}
               </h3>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.55rem' }}>
                 {cat.items.map((item, iIdx) => (
-                  <span
+                  <button
                     key={iIdx}
+                    onClick={() => setSelectedSkill(item)}
                     style={{
                       background: 'var(--surface-muted)',
                       border: '1px solid var(--border)',
                       borderRadius: '999px',
                       color: 'var(--text)',
                       fontSize: '0.88rem',
-                      padding: '0.4rem 0.85rem',
+                      padding: '0.45rem 0.9rem',
                       fontWeight: '500',
-                      transition: 'border-color 0.18s ease, transform 0.18s ease',
+                      cursor: 'pointer',
+                      transition: 'all 0.18s ease',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.35rem',
                     }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = 'var(--accent)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'var(--border)';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }}
+                    title={`Click to endorse ${item}`}
                   >
-                    {item}
-                  </span>
+                    <span>{item}</span>
+                    <span style={{ color: 'var(--accent)', fontSize: '0.75rem' }}>✦</span>
+                  </button>
                 ))}
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {selectedSkill && (
+        <SkillEndorseModal skillName={selectedSkill} onClose={() => setSelectedSkill(null)} />
+      )}
     </section>
   );
 }

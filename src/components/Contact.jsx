@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 export default function Contact() {
   const [timeStr, setTimeStr] = useState('');
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -23,14 +24,40 @@ export default function Contact() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
-    
-    // Construct mailto link
-    const subject = encodeURIComponent(`Portfolio Message from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-    window.location.href = `mailto:riteshmedasani2007@gmail.com?subject=${subject}&body=${body}`;
+
+    setIsSubmitting(true);
+    const emailBody = `Portfolio Message from Website:\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+
+    try {
+      // 1. Post to Web3Forms API
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '2161b9ed-7d43-4a17-b733-6cfefbe30ab2',
+          subject: `New Portfolio Message from ${formData.name}`,
+          from_name: formData.name,
+          replyto: formData.email,
+          to_email: 'riteshmedasani2007@gmail.com',
+          message: emailBody,
+        }),
+      });
+    } catch (err) {
+      console.error('Submission API error:', err);
+    }
+
+    // 2. Failsafe Mailto Trigger to guarantee Gmail opening
+    const mailtoSubject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
+    const mailtoBody = encodeURIComponent(emailBody);
+    window.open(`mailto:riteshmedasani2007@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank');
+
+    setIsSubmitting(false);
     setSubmitted(true);
   };
 
@@ -47,42 +74,55 @@ export default function Contact() {
 
         <div className="contact__grid">
           <form className="contact__form" onSubmit={handleSubmit}>
-            <label>
-              <span>Your Name</span>
-              <input
-                type="text"
-                placeholder="e.g. Alex Smith"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
-              />
-            </label>
+            {submitted ? (
+              <div style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: '16px', padding: '2rem', textCenter: 'center' }}>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: 'var(--accent)', margin: '0 0 0.5rem' }}>
+                  Message Sent Successfully! ✨
+                </h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', margin: 0 }}>
+                  Thank you <strong>{formData.name}</strong>. Your message has been sent to <strong>riteshmedasani2007@gmail.com</strong>.
+                </p>
+              </div>
+            ) : (
+              <>
+                <label>
+                  <span>Your Name</span>
+                  <input
+                    type="text"
+                    placeholder="e.g. Alex Smith"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                  />
+                </label>
 
-            <label>
-              <span>Your Email Address</span>
-              <input
-                type="email"
-                placeholder="e.g. alex@example.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
-              />
-            </label>
+                <label>
+                  <span>Your Email Address</span>
+                  <input
+                    type="email"
+                    placeholder="e.g. alex@example.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                  />
+                </label>
 
-            <label>
-              <span>Project Message / Details</span>
-              <textarea
-                rows="5"
-                placeholder="Describe your project, ideas, or opportunities..."
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                required
-              />
-            </label>
+                <label>
+                  <span>Project Message / Details</span>
+                  <textarea
+                    rows="5"
+                    placeholder="Describe your project, ideas, or opportunities..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    required
+                  />
+                </label>
 
-            <button type="submit" className="btn btn--primary btn--xl" style={{ marginTop: '0.5rem' }}>
-              {submitted ? 'Opening Email Client...' : 'Send Message'}
-            </button>
+                <button type="submit" className="btn btn--primary btn--xl" style={{ marginTop: '0.5rem' }} disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending Email...' : 'Send Message & Email Ritesh 🚀'}
+                </button>
+              </>
+            )}
           </form>
 
           <aside className="contact__aside">
@@ -103,7 +143,7 @@ export default function Contact() {
 
             <div>
               <h3>Local Time</h3>
-              <p className="contact__clock">{timeStr || '16:00:00 IST'}</p>
+              <p className="contact__clock">{timeStr || '09:00:00 AM IST'}</p>
             </div>
 
             <div>
