@@ -5,6 +5,10 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [mailtoUrl, setMailtoUrl] = useState('');
+
+  // Web3Forms Access Key: Replace with your key from https://web3forms.com (Free, sent to riteshmedasani2007@gmail.com)
+  const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY'; 
 
   useEffect(() => {
     const updateTime = () => {
@@ -29,33 +33,42 @@ export default function Contact() {
     if (!formData.name || !formData.email || !formData.message) return;
 
     setIsSubmitting(true);
-    const emailBody = `Portfolio Message from Website:\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
 
+    const emailBody = `Portfolio Message from Website:\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    const subject = `New Portfolio Inquiry from ${formData.name}`;
+
+    // Construct direct mailto URL
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(emailBody);
+    const directMailUrl = `mailto:riteshmedasani2007@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+    setMailtoUrl(directMailUrl);
+
+    // Synchronously attempt window.location for native mail client
     try {
-      // 1. Post to Web3Forms API
-      await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: '2161b9ed-7d43-4a17-b733-6cfefbe30ab2',
-          subject: `New Portfolio Message from ${formData.name}`,
-          from_name: formData.name,
-          replyto: formData.email,
-          to_email: 'riteshmedasani2007@gmail.com',
-          message: emailBody,
-        }),
-      });
+      if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY !== 'YOUR_WEB3FORMS_ACCESS_KEY') {
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: subject,
+            from_name: formData.name,
+            replyto: formData.email,
+            to_email: 'riteshmedasani2007@gmail.com',
+            message: emailBody,
+          }),
+        });
+      } else {
+        // Formspree fallback / direct mailto trigger
+        window.location.href = directMailUrl;
+      }
     } catch (err) {
       console.error('Submission API error:', err);
+      window.location.href = directMailUrl;
     }
-
-    // 2. Failsafe Mailto Trigger to guarantee Gmail opening
-    const mailtoSubject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
-    const mailtoBody = encodeURIComponent(emailBody);
-    window.open(`mailto:riteshmedasani2007@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank');
 
     setIsSubmitting(false);
     setSubmitted(true);
@@ -75,13 +88,43 @@ export default function Contact() {
         <div className="contact__grid">
           <form className="contact__form" onSubmit={handleSubmit}>
             {submitted ? (
-              <div style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: '16px', padding: '2rem', textCenter: 'center' }}>
+              <div
+                style={{
+                  background: 'var(--bg-elevated)',
+                  border: '1px solid var(--border)',
+                  borderRadius: '16px',
+                  padding: '2rem',
+                  textAlign: 'center',
+                }}
+              >
+                <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>📧</div>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: 'var(--accent)', margin: '0 0 0.5rem' }}>
-                  Message Sent Successfully! ✨
+                  Thank you {formData.name}!
                 </h3>
-                <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', margin: 0 }}>
-                  Thank you <strong>{formData.name}</strong>. Your message has been sent to <strong>riteshmedasani2007@gmail.com</strong>.
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', margin: '0 0 1.5rem' }}>
+                  Your message has been dispatched to <strong>riteshmedasani2007@gmail.com</strong>.
                 </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'center' }}>
+                  <a
+                    href={mailtoUrl}
+                    className="btn btn--primary"
+                    style={{ width: '100%', textDecoration: 'none' }}
+                  >
+                    Open in Your Email Client ↗
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({ name: '', email: '', message: '' });
+                    }}
+                    className="btn btn--ghost"
+                    style={{ width: '100%' }}
+                  >
+                    Send Another Message
+                  </button>
+                </div>
               </div>
             ) : (
               <>
@@ -119,7 +162,7 @@ export default function Contact() {
                 </label>
 
                 <button type="submit" className="btn btn--primary btn--xl" style={{ marginTop: '0.5rem' }} disabled={isSubmitting}>
-                  {isSubmitting ? 'Sending Email...' : 'Send Message & Email Ritesh 🚀'}
+                  {isSubmitting ? 'Sending Email...' : 'Send Message to Ritesh 🚀'}
                 </button>
               </>
             )}
@@ -143,7 +186,7 @@ export default function Contact() {
 
             <div>
               <h3>Local Time</h3>
-              <p className="contact__clock">{timeStr || '09:00:00 AM IST'}</p>
+              <p className="contact__clock">{timeStr || '09:30:00 AM IST'}</p>
             </div>
 
             <div>

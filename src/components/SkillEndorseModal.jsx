@@ -9,6 +9,9 @@ export default function SkillEndorseModal({ skillName, onClose }) {
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [mailtoUrl, setMailtoUrl] = useState('');
+
+  const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,37 +20,37 @@ export default function SkillEndorseModal({ skillName, onClose }) {
     setIsSubmitting(true);
 
     const emailBody = `Skill/Topic: ${skillName}\nEndorsement Type: ${type}\nFrom Name: ${name}\nFrom Email: ${email}\n\nMessage:\n${message}`;
+    const subject = `Skill Endorsement (${skillName}) from ${name}`;
+
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(emailBody);
+    const directMailUrl = `mailto:riteshmedasani2007@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+    setMailtoUrl(directMailUrl);
 
     try {
-      // 1. Submit to Web3Forms API
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: '2161b9ed-7d43-4a17-b733-6cfefbe30ab2', // Web3Forms Access Key
-          subject: `New Skill Endorsement (${skillName}) from ${name}`,
-          from_name: name,
-          replyto: email,
-          to_email: 'riteshmedasani2007@gmail.com',
-          message: emailBody,
-          skill_topic: skillName,
-          type: type,
-        }),
-      });
-
-      const data = await res.json();
-      console.log('Form submission status:', data);
+      if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY !== 'YOUR_WEB3FORMS_ACCESS_KEY') {
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: subject,
+            from_name: name,
+            replyto: email,
+            to_email: 'riteshmedasani2007@gmail.com',
+            message: emailBody,
+          }),
+        });
+      } else {
+        window.location.href = directMailUrl;
+      }
     } catch (err) {
       console.error('API submission error:', err);
+      window.location.href = directMailUrl;
     }
-
-    // 2. Failsafe Mailto Trigger to guarantee receipt in Gmail
-    const mailtoSubject = encodeURIComponent(`Endorsement & Inquiry: ${skillName} (${type})`);
-    const mailtoBody = encodeURIComponent(emailBody);
-    window.open(`mailto:riteshmedasani2007@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank');
 
     setIsSubmitting(false);
     setIsSuccess(true);
@@ -93,14 +96,19 @@ export default function SkillEndorseModal({ skillName, onClose }) {
           <div style={{ textAlign: 'center', padding: '1.5rem 0' }}>
             <div style={{ fontSize: '3.5rem', marginBottom: '0.75rem' }}>✨</div>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', margin: '0 0 0.5rem', color: 'var(--text)' }}>
-              Endorsement Submitted!
+              Endorsement Dispatched!
             </h3>
             <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', margin: '0 0 1.5rem' }}>
-              Thank you for endorsing <strong>{skillName}</strong>. Your message and endorsement details have been dispatched to <strong>riteshmedasani2007@gmail.com</strong>.
+              Thank you <strong>{name}</strong> for endorsing <strong>{skillName}</strong>. Your message details have been prepared for <strong>riteshmedasani2007@gmail.com</strong>.
             </p>
-            <button onClick={onClose} className="btn btn--primary" style={{ width: '100%' }}>
-              Done
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'center' }}>
+              <a href={mailtoUrl} className="btn btn--primary" style={{ width: '100%', textDecoration: 'none' }}>
+                Open Email App to Confirm Delivery ↗
+              </a>
+              <button onClick={onClose} className="btn btn--ghost" style={{ width: '100%' }}>
+                Done
+              </button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.1rem' }}>
@@ -193,7 +201,7 @@ export default function SkillEndorseModal({ skillName, onClose }) {
             </label>
 
             <button type="submit" className="btn btn--primary" style={{ width: '100%', marginTop: '0.5rem' }} disabled={isSubmitting}>
-              {isSubmitting ? 'Sending Endorsement...' : `Endorse ${skillName} & Send to Email 🚀`}
+              {isSubmitting ? 'Sending Endorsement...' : `Endorse ${skillName} & Send Email 🚀`}
             </button>
           </form>
         )}
