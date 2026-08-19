@@ -7,8 +7,8 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [mailtoUrl, setMailtoUrl] = useState('');
 
-  // Web3Forms Access Key: Replace with your key from https://web3forms.com (Free, sent to riteshmedasani2007@gmail.com)
-  const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY'; 
+  // Ritesh's Web3Forms Access Key
+  const WEB3FORMS_ACCESS_KEY = '287fed78-8277-49b0-8e08-cfa46dc6fab2';
 
   useEffect(() => {
     const updateTime = () => {
@@ -37,37 +37,31 @@ export default function Contact() {
     const emailBody = `Portfolio Message from Website:\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
     const subject = `New Portfolio Inquiry from ${formData.name}`;
 
-    // Construct direct mailto URL
     const encodedSubject = encodeURIComponent(subject);
     const encodedBody = encodeURIComponent(emailBody);
     const directMailUrl = `mailto:riteshmedasani2007@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
     setMailtoUrl(directMailUrl);
 
-    // Synchronously attempt window.location for native mail client
     try {
-      if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY !== 'YOUR_WEB3FORMS_ACCESS_KEY') {
-        await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_ACCESS_KEY,
-            subject: subject,
-            from_name: formData.name,
-            replyto: formData.email,
-            to_email: 'riteshmedasani2007@gmail.com',
-            message: emailBody,
-          }),
-        });
-      } else {
-        // Formspree fallback / direct mailto trigger
-        window.location.href = directMailUrl;
-      }
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: subject,
+          from_name: formData.name,
+          replyto: formData.email,
+          message: emailBody,
+        }),
+      });
+
+      const result = await res.json();
+      console.log('Web3Forms response:', result);
     } catch (err) {
       console.error('Submission API error:', err);
-      window.location.href = directMailUrl;
     }
 
     setIsSubmitting(false);
@@ -97,33 +91,33 @@ export default function Contact() {
                   textAlign: 'center',
                 }}
               >
-                <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>📧</div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: 'var(--accent)', margin: '0 0 0.5rem' }}>
-                  Thank you {formData.name}!
+                <div style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>📬</div>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--accent)', margin: '0 0 0.5rem' }}>
+                  Message Sent Successfully!
                 </h3>
                 <p style={{ color: 'var(--text-muted)', lineHeight: '1.6', margin: '0 0 1.5rem' }}>
-                  Your message has been dispatched to <strong>riteshmedasani2007@gmail.com</strong>.
+                  Thank you <strong>{formData.name}</strong>. Your message has been sent directly to <strong>riteshmedasani2007@gmail.com</strong>.
                 </p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'center' }}>
-                  <a
-                    href={mailtoUrl}
-                    className="btn btn--primary"
-                    style={{ width: '100%', textDecoration: 'none' }}
-                  >
-                    Open in Your Email Client ↗
-                  </a>
                   <button
                     type="button"
                     onClick={() => {
                       setSubmitted(false);
                       setFormData({ name: '', email: '', message: '' });
                     }}
-                    className="btn btn--ghost"
+                    className="btn btn--primary"
                     style={{ width: '100%' }}
                   >
                     Send Another Message
                   </button>
+                  <a
+                    href={mailtoUrl}
+                    className="btn btn--ghost"
+                    style={{ width: '100%', textDecoration: 'none', fontSize: '0.88rem' }}
+                  >
+                    Optional: Open Mail Client Fallback ↗
+                  </a>
                 </div>
               </div>
             ) : (
@@ -162,7 +156,7 @@ export default function Contact() {
                 </label>
 
                 <button type="submit" className="btn btn--primary btn--xl" style={{ marginTop: '0.5rem' }} disabled={isSubmitting}>
-                  {isSubmitting ? 'Sending Email...' : 'Send Message to Ritesh 🚀'}
+                  {isSubmitting ? 'Sending Message...' : 'Send Message to Ritesh 🚀'}
                 </button>
               </>
             )}
@@ -186,7 +180,7 @@ export default function Contact() {
 
             <div>
               <h3>Local Time</h3>
-              <p className="contact__clock">{timeStr || '09:30:00 AM IST'}</p>
+              <p className="contact__clock">{timeStr || '09:53:00 AM IST'}</p>
             </div>
 
             <div>
